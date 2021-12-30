@@ -1,0 +1,20 @@
+{
+    "name": "Project.Store",
+    "references": [
+        "UniRx",
+        "UniTask",
+        "Unity.TextMeshPro",
+        "Project.Store.Internal",
+        "UnityEngine.Purchasing",
+        "UnityEngine.Purchasing.Stores"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,2325 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab58635920e2024792e11aec6e6a782, type: 3}
+  m_Name: DemoTreeStore
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: 691aaa2f7c1cb054a90132afbe8ba590, type: 3}
+    - {fileID: 21300000, guid: faeba9572e6d04448ac4a07a9c4602eb, type: 3}
+    - {fileID: 21300000, guid: 433686e09374c304ca95284423363218, type: 3}
+    - {fileID: 21300000, guid: 93308e5f33c5a2d4f8a0588c5ca1af58, type: 3}
+    - {fileID: 21300000, guid: ee9ca98618e39664c8bba059180351d2, type: 3}
+    - {fileID: 21300000, guid: 0c5650d5514d80749aaccef2470101ec, type: 3}
+    - {fileID: 21300000, guid: a3bb194caf02fae418aa0e9d1de23e6f, type: 3}
+    - {fileID: 21300000, guid: e2cf8642beb2300419d658de07cd794a, type: 3}
+    - {fileID: 21300000, guid: 63f262b069d47464d8be771c2d052451, type: 3}
+    - {fileID: 21300000, guid: ab8802df8844feb41ae403106e2fd02e, type: 3}
+    - {fileID: 21300000, guid: 531e4a7ad56c46b4e9bb33faf70cb9d7, type: 3}
+    - {fileID: 21300000, guid: ce4861a8101236c4992780fbbaafd995, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: unityIAPInitializer
+      Entry: 7
+      Data: 0|Project.Store.UnityIAPInitializer, Project.Store
+    - Name: useFakeStore
+      Entry: 5
+      Data: true
+    - Name: fakeStoreUIMode
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currencies
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[Project.Store.Currency, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 2|Project.Store.Currency, Project.Store
+    - Name: name
+      Entry: 1
+      Data: coin
+    - Name: icon
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|Project.Store.Currency, Project.Store
+    - Name: name
+      Entry: 1
+      Data: crystal
+    - Name: icon
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: categories
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[Project.Store.StoreSellable,
+        Project.Store]], mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: animals
+    - Name: $v
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[Project.Store.StoreSellable, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 9
+    - Name: 
+      Entry: 7
+      Data: 7|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 6
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: bear
+    - Name: title
+      Entry: 1
+      Data: Bear
+    - Name: sprite
+      Entry: 10
+      Data: 2
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 8|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 9|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 10|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 11|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 12|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 13|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 14|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 15|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 16|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 17|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 18|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 19|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 8813
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: coin
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 20|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 21|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 7
+      Data: 22|UnityEngine.Purchasing.PayoutDefinition, UnityEngine.Purchasing
+    - Name: m_Type
+      Entry: 3
+      Data: 0
+    - Name: m_Subtype
+      Entry: 1
+      Data: 
+    - Name: m_Quantity
+      Entry: 4
+      Data: 0
+    - Name: m_Data
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: cat
+    - Name: title
+      Entry: 1
+      Data: Cat
+    - Name: sprite
+      Entry: 10
+      Data: 3
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 23|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 24|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 25|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 26|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 27|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 28|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 29|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 30|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 31|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 32|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 33|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 34|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 2c01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: coin
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 35|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 36|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 6
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: chiken
+    - Name: title
+      Entry: 1
+      Data: Chiken
+    - Name: sprite
+      Entry: 10
+      Data: 4
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 37|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 38|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 39|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 40|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 41|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 42|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 43|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 44|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 45|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 46|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 47|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 48|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 64
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: coin
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 49|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 50|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 6
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: dolphin
+    - Name: title
+      Entry: 1
+      Data: Dolphin
+    - Name: sprite
+      Entry: 10
+      Data: 5
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 51|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 52|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 53|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 54|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 55|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 56|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 57|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 58|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 59|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 60|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 61|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 62|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 9600
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: crystal
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 63|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 64|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 6
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: elephant
+    - Name: title
+      Entry: 1
+      Data: Elephant
+    - Name: sprite
+      Entry: 10
+      Data: 6
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 65|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 66|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 67|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 68|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 69|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 70|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 71|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 72|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 73|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 74|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 75|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 76|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: c800
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: crystal
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 77|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 78|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 6
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: fish
+    - Name: title
+      Entry: 1
+      Data: Fish
+    - Name: sprite
+      Entry: 10
+      Data: 7
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 79|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 80|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 81|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 82|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 83|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 84|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 85|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 86|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 87|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 88|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 89|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 90|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: f401
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: coin
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 91|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 92|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 6
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: owl
+    - Name: title
+      Entry: 1
+      Data: Owl
+    - Name: sprite
+      Entry: 10
+      Data: 8
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 93|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 94|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 95|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 96|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 97|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 98|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 99|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 100|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 101|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 102|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 103|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 104|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: e803
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: coin
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 105|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 106|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 6
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: parrot
+    - Name: title
+      Entry: 1
+      Data: Parrot
+    - Name: sprite
+      Entry: 10
+      Data: 9
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 107|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 108|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 109|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 110|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 111|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 112|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 113|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 114|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 115|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 116|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 117|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 118|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 32
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: crystal
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 119|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 120|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 6
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: strike
+    - Name: title
+      Entry: 1
+      Data: Strike
+    - Name: sprite
+      Entry: 10
+      Data: 10
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 121|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 122|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 123|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 124|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 125|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 126|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 127|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 128|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 129|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 130|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 131|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 132|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 64
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: crystal
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 133|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: trees
+    - Name: $v
+      Entry: 7
+      Data: 134|System.Collections.Generic.List`1[[Project.Store.StoreSellable, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 135|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 6
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: tree1
+    - Name: title
+      Entry: 1
+      Data: Tree 1
+    - Name: sprite
+      Entry: 10
+      Data: 11
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 136|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 00
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: false
+    - Name: IAP_StoreSpecificID
+      Entry: 6
+      Data: 
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 137|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 138|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 139|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 140|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 141|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 142|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 143|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 144|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 145|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 146|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 147|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 00
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 1
+      Data: coin
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 148|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: iap
+    - Name: $v
+      Entry: 7
+      Data: 149|System.Collections.Generic.List`1[[Project.Store.StoreSellable, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 150|Project.Store.StoreSellable, Project.Store
+    - Name: IAP_ProductType
+      Entry: 3
+      Data: 0
+    - Name: IAP_PayoutDefinition
+      Entry: 7
+      Data: 151|UnityEngine.Purchasing.PayoutDefinition, UnityEngine.Purchasing
+    - Name: m_Type
+      Entry: 3
+      Data: 0
+    - Name: m_Subtype
+      Entry: 1
+      Data: 
+    - Name: m_Quantity
+      Entry: 4
+      Data: 100
+    - Name: m_Data
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: id
+      Entry: 1
+      Data: coins_100
+    - Name: title
+      Entry: 1
+      Data: 100 Coins
+    - Name: sprite
+      Entry: 10
+      Data: 0
+    - Name: quantity
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 152|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 64
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: isIAP
+      Entry: 5
+      Data: true
+    - Name: IAP_StoreSpecificID
+      Entry: 1
+      Data: coins_100
+    - Name: IAP_OverrideIDs
+      Entry: 5
+      Data: false
+    - Name: GooglePlay
+      Entry: 7
+      Data: 153|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IOSAppStore
+      Entry: 7
+      Data: 154|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MacAppStore
+      Entry: 7
+      Data: 155|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: UniversalWindowsPlatform
+      Entry: 7
+      Data: 156|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AmazonAppstore
+      Entry: 7
+      Data: 157|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SamsungGalaxyApps
+      Entry: 7
+      Data: 158|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TizenStore
+      Entry: 7
+      Data: 159|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CloudMoolahStore
+      Entry: 7
+      Data: 160|Project.Store.StoreSellable+OverridedIAP, Project.Store
+    - Name: isOverriden
+      Entry: 5
+      Data: false
+    - Name: IAP_ID
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: required
+      Entry: 7
+      Data: 161|System.Collections.Generic.List`1[[Project.Store.Price, Project.Store]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 162|Project.Store.Price, Project.Store
+    - Name: amount
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 163|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 00
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: currency
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: subSellables
+      Entry: 7
+      Data: 164|System.Collections.Generic.List`1[[Project.Store.StoreSellable+StoreSubSellableContainer,
+        Project.Store]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: balance
+      Entry: 7
+      Data: 165|UniRx.ReactiveProperty`1[[System.Numerics.BigInteger, System.Numerics]],
+        UniRx
+    - Name: value
+      Entry: 7
+      Data: System.Numerics.BigInteger, System.Numerics
+    - Name: 
+      Entry: 7
+      Data: 166|System.Byte[], mscorlib
+    - Name: 
+      Entry: 14
+      Data: 00
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  isActive: 1
+  debug: 1

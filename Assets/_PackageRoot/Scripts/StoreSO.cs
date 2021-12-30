@@ -1,0 +1,254 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using UnityEngine;
+using UniRx;
+using Sirenix.Utilities;
+using Sirenix.OdinInspector;
+using UnityEngine.Purchasing;
+using BigInt = System.Numerics.BigInteger;
+
+namespace Project.Store
+{
+	public abstract class StoreSO : SerializedScriptableObject
+	{
+												public	static			StoreSO										Instance				{ get; private set; }
+
+												private					Subject<StoreSellable>						onPurchaseSuccessful	= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>					OnPurchaseSuccessful	=> onPurchaseSuccessful;
+
+												private					Subject<StoreSellable>						onInsufficientFunds		= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>					OnInsufficientFunds		=> onInsufficientFunds;
+
+												private					Subject<StoreSellable>						onPurchaseFailed		= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>					OnPurchaseFailed		=> onPurchaseFailed;
+
+												// TODO: implement Blocked event
+												private					Subject<StoreSellable>						onPurchaseBlocked		= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>					OnPurchaseBlocked		=> onPurchaseBlocked;
+
+		[OnValueChanged("OnEnable")]			public					bool										isActive				= true;
+												public					bool										debug;
+		[Required]								public					UnityIAPInitializer							unityIAPInitializer;
+		[OnValueChanged("InvalidateData")]
+		[Required, HideReferenceObjectPicker]	public					List<Currency>								currencies              = new List<Currency>();
+		[OnValueChanged("InvalidateData")]
+		[Required, HideReferenceObjectPicker]	public					Dictionary<string, List<StoreSellable>>		categories				= new Dictionary<string, List<StoreSellable>>();
+	
+																		List<StoreSellable>							_sellablesList;
+																		Dictionary<string, StoreSellable>			_sellablesByIAPID;
+																		Dictionary<string, StoreSellable>			_sellablesByID;
+																		
+																		List<StoreSellable>							SellablesList
+																		{
+																			get
+																			{
+																				if (_sellablesList == null) InvalidateData();
+																				return _sellablesList;
+																			}
+																		}
+																		Dictionary<string, StoreSellable>			SellablesByIAPID
+																		{
+																			get
+																			{
+																				if (_sellablesByIAPID == null) InvalidateData();
+																				return _sellablesByIAPID;
+																			}
+																		}
+																		Dictionary<string, StoreSellable>			SellablesByID
+																		{
+																			get
+																			{
+																				if (_sellablesByID == null) InvalidateData();
+																				return _sellablesByID;
+																			}
+																		}
+
+
+																		CompositeDisposable							compositeDiposable		= new CompositeDisposable();
+
+												protected abstract		BigInt										GetBalance				(string currency);
+												protected abstract		void										SpendBalance			(string currency, BigInt amount);
+												public	  abstract		IObservable<Price>							OnBalanceChanged		(string currency);
+												protected abstract		void										ApplyPurchase			(List<IStoreSellable> sellables);
+	
+												public					bool										IsEnoughBalance			(Price price)				=> price.Amount <= GetBalance(price.Currency);
+												public					bool										IsEnoughBalance			(StoreSellable sellable)	=> sellable.isIAP ? true : sellable.required.All(x => IsEnoughBalance(x));
+												public                  ReadOnlyReactiveProperty<bool>				IsEnoughBalanceReactive	(StoreSellable sellable)	=> sellable.isIAP ? new BoolReactiveProperty(true).ToReadOnlyReactiveProperty() : 
+																																										Observable.Merge
+																																										(
+																																											sellable.required.Select(price => OnBalanceChanged(price.Currency).Select(x => IsEnoughBalance(price)))
+																																										).ToReadOnlyReactiveProperty();
+
+												public					StoreSellable								GetSellable				(string id)					=> id == null ? null : SellablesByID.ContainsKey(id) ? SellablesByID[id] : null;
+												public					Sprite										GetCurrencyIcon			(string currency)			=> currencies.First(x => x.name == currency).icon;
+
+												public					string[]									AllCurrenciesNames()	=> currencies.Select(x => x.name).ToArray();
+												public					string[]									AllSellableIDs()		=> SellablesList.Select(x => x.ID).ToArray();
+												public					string[]									AllCategories()			=> categories.Keys.ToArray();
+
+												public					bool										ValidateID				(string id)			=> id == null ? false : GetSellable(id) != null;
+												public					bool										ValidateCurrency		(string currency)   => currency == null ? false : AllCurrenciesNames().Contains(currency);
+												public					bool										ValidateCategory		(string category)	=> category == null ? false : categories.ContainsKey(category);
+
+		public		virtual void	InvalidateData			()
+		{
+			_sellablesList = categories
+				.SelectMany	(x => x.Value)
+				.Where		(x => x != null)
+				.Where		(x => !string.IsNullOrEmpty(x.ID))
+				.ToList		();
+
+			_sellablesByID = new Dictionary<string, StoreSellable>();
+			_sellablesList.ForEach(x => _sellablesByID[x.ID] = x);
+
+			_sellablesByIAPID = new Dictionary<string, StoreSellable>();
+			_sellablesList.Where(x => x.isIAP && !string.IsNullOrEmpty(x.IAP_StoreSpecitifID))
+				.ForEach(x => _sellablesByIAPID[x.IAP_StoreSpecitifID] = x);
+		}
+
+		protected	virtual	void	OnEnable				()
+		{
+			if (!isActive)
+			{
+				if (Instance == this)
+					Instance = null;
+				return;
+			}
+			if (Instance != null && Instance != this)
+			{
+				Debug.LogError("Multiple active StoreSO instances detected! Just one instance may have 'isActive' = 'True'");
+				return;
+			}
+
+			Instance = this;
+			Debug.Log($"Inited StoreSO: {name}, isPlaying={Application.isPlaying}", this);
+
+			compositeDiposable.Clear();
+
+			InvalidateData();
+			InitDebug();
+
+			OnInsufficientFunds	.Subscribe(onPurchaseFailed.OnNext)		.AddTo(compositeDiposable);
+			OnPurchaseBlocked	.Subscribe(onPurchaseFailed.OnNext)		.AddTo(compositeDiposable);
+
+			OnInsufficientFunds	.Subscribe(OnInsufficientFundsEvent)	.AddTo(compositeDiposable);
+			OnPurchaseSuccessful.Subscribe(OnPurchaseSuccessfulEvent)	.AddTo(compositeDiposable);
+			OnPurchaseFailed	.Subscribe(OnPurchaseFailedEvent)		.AddTo(compositeDiposable);
+			OnPurchaseBlocked	.Subscribe(OnPurchaseBlockedEvent)		.AddTo(compositeDiposable);
+
+			if (Application.isPlaying)
+			{
+				InitIAP();
+			}
+			else
+			{
+
+			}
+		}
+		protected	virtual void	OnDisable					()
+		{
+			if (Instance == this)
+				Instance = null;
+
+			compositeDiposable.Clear();
+		}
+		private		void			InitIAP						()
+		{
+			Debug.Log($"Inited StoreSO: {name}, InitIAP", this);
+			unityIAPInitializer.Init(SellablesByIAPID.Values);
+			unityIAPInitializer.OnProductPurchased.Subscribe(transaction =>
+			{
+				var sellable = SellablesByIAPID[transaction.productId];
+				ApplyPurchaseInternal(sellable);
+			}).AddTo(compositeDiposable);
+			unityIAPInitializer.OnProductPurchasingFailed.Subscribe(transaction =>
+			{
+				var sellable = SellablesByIAPID[transaction.productId];
+				onPurchaseFailed.OnNext(sellable);
+			}).AddTo(compositeDiposable);
+			Debug.Log($"Inited StoreSO: {name}, InitIAP completed", this);
+		}
+		private		void			InitDebug					()
+		{
+			OnPurchaseSuccessful.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseSuccessful - {x.ID}"))	.AddTo(compositeDiposable);
+			OnInsufficientFunds	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnInsufficientFunds - {x.ID}"))	.AddTo(compositeDiposable);
+			OnPurchaseBlocked	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseBlocked - {x.ID}"))		.AddTo(compositeDiposable);
+			OnPurchaseFailed	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseFailed - {x.ID}"))		.AddTo(compositeDiposable);
+			Debug.Log($"Inited StoreSO: {name}, Debug", this);
+		}
+		public		Product			GetUnityIAPProduct			(StoreSellable sellable) => GetUnityIAPProduct(sellable.IAP_StoreSpecitifID);
+		public		Product			GetUnityIAPProduct			(string storeIAPProductID)
+		{
+			var product = unityIAPInitializer.Product(storeIAPProductID);
+			if (product == null)
+			{
+				if (!Application.isEditor && !unityIAPInitializer.useFakeStore) 
+					Debug.LogError($"No registered product with IAP_ID={storeIAPProductID} found. Please add the product");
+				return null;
+			}
+			return product;
+		}
+		public		decimal			GetIAPPrice					(StoreSellable sellable)
+		{
+			var product = GetUnityIAPProduct(sellable);
+			if (product == null) return -1;
+			return product.metadata.localizedPrice;
+		}
+		public		string			GetIAPPriceString			(StoreSellable sellable)
+		{
+			var product = GetUnityIAPProduct(sellable);
+			if (product == null) return null;
+			return product.metadata.localizedPriceString;
+		}
+
+		protected   virtual void	OnInsufficientFundsEvent	(StoreSellable sellable) { }
+		protected   virtual void	OnPurchaseSuccessfulEvent	(StoreSellable sellable) { }
+		protected   virtual void	OnPurchaseFailedEvent		(StoreSellable sellable) { }
+		protected   virtual void	OnPurchaseBlockedEvent		(StoreSellable sellable) { }
+
+		protected	void			SpendBalance				(StoreSellable sellable)
+		{
+			foreach (var required in sellable.required)
+			{
+				SpendBalance(required.Currency, required.Amount);
+			}
+		}
+		private		void			ApplyPurchaseInternal		(StoreSellable sellable)
+		{
+			var sellables = new List<IStoreSellable>() { sellable };
+				sellables.AddRange(sellable.SubSellables);
+			ApplyPurchase(sellables);
+
+			onPurchaseSuccessful.OnNext(sellable);
+		}
+		public		void			Purchase					(string id) => Purchase(GetSellable(id));
+		public		void			Purchase					(StoreSellable sellable)
+		{
+			// TODO: implement is Blocked check
+			// if (sellable.IsBlocked)
+
+			if (sellable.isIAP)
+			{
+				unityIAPInitializer.InitiatePurchase(sellable.IAP_StoreSpecitifID);
+			}
+			else
+			{
+				if (IsEnoughBalance(sellable))
+				{
+					SpendBalance(sellable);
+					ApplyPurchaseInternal(sellable);
+				}
+				else
+				{
+					onInsufficientFunds.OnNext(sellable);
+				}
+			}
+		}
+
+		public		void			RestorePurchases			()
+        {
+			unityIAPInitializer.RestorePurchases();
+		}
+	}
+}
