@@ -82,17 +82,18 @@ namespace Project.Store
 		}
 		public		virtual		void															RestorePurchases				()
         {
+			Debug.Log($"RestorePurchases");
 			extensionsApple?.RestoreTransactions(success =>
+			{
+				Debug.Log($"Restore Transactions completed with status:{(success ? "success" : "failed")}");
+			});
+			extensionsGooglePlayStore?.RestoreTransactions(success =>
 			{
 				Debug.Log($"Restore Transactions completed with status:{(success ? "success" : "failed")}");
 			});
 			extensionsMicrosoft?.RestoreTransactions();
 			// extensionsUDP does not exist in UDP API
 			// extensionsAmazon not supported by Amazon
-			extensionsGooglePlayStore?.RestoreTransactions(success =>
-			{
-				Debug.Log($"Restore Transactions completed with status:{(success ? "success" : "failed")}");
-			});
 		}
 
 		protected	virtual		IEnumerable<Func<PurchaseEventArgs, PurchaseProcessingResult>>	PurchaseProcessors				=> new Func<PurchaseEventArgs, PurchaseProcessingResult>[] 
