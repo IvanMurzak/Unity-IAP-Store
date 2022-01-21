@@ -14,6 +14,9 @@ namespace Project.Store
 		public	const			string															ON_PRODUCT_PURCHASED			= "ON_PRODUCT_PURCHASED";
 		public	const			string															ON_PRODUCT_PURCHASING_FAILED	= "ON_PRODUCT_PURCHASING_FAILED";
 
+		[NonSerialized]			Subject<UnityIAPInitializer>									onInitializedIAP				= new Subject<UnityIAPInitializer>();
+		public					IObservable<UnityIAPInitializer>								OnInitializedIAP				=> onInitializedIAP;
+
 		[NonSerialized]			Subject<TransactionContainer>									onProductPurchased				= new Subject<TransactionContainer>();
 		public					IObservable<TransactionContainer>								OnProductPurchased				=> onProductPurchased == null ? onProductPurchased = new Subject<TransactionContainer>() : onProductPurchased;
 
@@ -146,6 +149,7 @@ namespace Project.Store
 			});
 
 			Debug.Log("StoreSO: Unity IAP Initialized");
+			onInitializedIAP.OnNext(this);
 		}
 		public		virtual		void															OnInitializeFailed				(InitializationFailureReason error)
 		{

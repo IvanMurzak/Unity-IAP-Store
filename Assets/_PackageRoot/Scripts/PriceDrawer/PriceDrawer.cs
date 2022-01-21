@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UniRx;
 
 namespace Project.Store
 {
@@ -18,6 +19,12 @@ namespace Project.Store
         void OnEnable()
         {
             if (refreshOnEnable) RefreshPrice();
+        }
+        void Awake()
+        {
+            StoreSO.Instance.OnInitialized
+                .Subscribe  (iapInitializer => RefreshPrice())
+                .AddTo      (this);
         }
         void Start()
         {

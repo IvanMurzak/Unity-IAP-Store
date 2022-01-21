@@ -14,6 +14,9 @@ namespace Project.Store
 	{
 												public	static			StoreSO										Instance				{ get; private set; }
 
+		[NonSerialized]													Subject<UnityIAPInitializer>				onInitialized			= new Subject<UnityIAPInitializer>();
+												public					IObservable<UnityIAPInitializer>			OnInitialized			=> onInitialized;
+
 												private					Subject<StoreSellable>						onPurchaseSuccessful	= new Subject<StoreSellable>();
 												public					IObservable<StoreSellable>					OnPurchaseSuccessful	=> onPurchaseSuccessful;
 
@@ -143,7 +146,7 @@ namespace Project.Store
 			}
 			else
 			{
-
+				// none
 			}
 		}
 		protected	virtual void	OnDisable					()
@@ -156,17 +159,27 @@ namespace Project.Store
 		private		void			InitIAP						()
 		{
 			Debug.Log($"Inited StoreSO: {name}, InitIAP", this);
+			unityIAPInitializer.OnInitializedIAP
+				.Subscribe(iapInitializer => onInitialized.OnNext(iapInitializer))
+				.AddTo(compositeDiposable);
+
 			unityIAPInitializer.Init(SellablesByIAPID.Values);
-			unityIAPInitializer.OnProductPurchased.Subscribe(transaction =>
-			{
-				var sellable = SellablesByIAPID[transaction.productId];
-				ApplyPurchaseInternal(sellable);
-			}).AddTo(compositeDiposable);
-			unityIAPInitializer.OnProductPurchasingFailed.Subscribe(transaction =>
-			{
-				var sellable = SellablesByIAPID[transaction.productId];
-				onPurchaseFailed.OnNext(sellable);
-			}).AddTo(compositeDiposable);
+
+			unityIAPInitializer.OnProductPurchased
+				.Subscribe(transaction =>
+				{
+					var sellable = SellablesByIAPID[transaction.productId];
+					ApplyPurchaseInternal(sellable);
+				})
+				.AddTo(compositeDiposable);
+
+			unityIAPInitializer.OnProductPurchasingFailed
+				.Subscribe(transaction =>
+				{
+					var sellable = SellablesByIAPID[transaction.productId];
+					onPurchaseFailed.OnNext(sellable);
+				})
+				.AddTo(compositeDiposable);
 			Debug.Log($"Inited StoreSO: {name}, InitIAP completed", this);
 		}
 		private		void			InitDebug					()

@@ -37,6 +37,12 @@ namespace Project.Store
         protected   virtual     string          GetQuantity         (IStoreSellable sellable) => sellable.Quantity.ToString();
         protected   virtual     Sprite          GetSellableSprite   (IStoreSellable sellable) => sellable.Sprite;
 
+        protected   virtual     void            Awake               ()
+        {
+            StoreSO.Instance.OnInitialized
+                .Subscribe(iapInitializer => UpdateDrawer())
+                .AddTo(this);
+        }
         protected   virtual     void            Start               ()
         {
             UpdateDrawer();

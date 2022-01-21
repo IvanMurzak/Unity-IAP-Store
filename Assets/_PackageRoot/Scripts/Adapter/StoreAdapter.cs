@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UniRx;
 
 namespace Project.Store
 { 
@@ -10,7 +11,13 @@ namespace Project.Store
 		[FoldoutGroup("Settings")]							public		bool						refreshOnStart = true;
 		[FoldoutGroup("Settings"), Required, AssetsOnly]	public		StoreSellableDrawer			drawerPrefab;
 		[SerializeField, HideInInspector]					protected	List<StoreSellableDrawer>	instances = new List<StoreSellableDrawer>();
-
+		
+		protected virtual void Awake()
+		{
+			StoreSO.Instance.OnInitialized
+				.Subscribe	(iapInitializer => Refresh())
+				.AddTo		(this);
+		}
 		protected virtual void Start()
 		{
 			if (refreshOnStart) Refresh();
