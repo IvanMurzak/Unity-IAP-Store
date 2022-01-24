@@ -14,13 +14,13 @@ namespace Project.Store
 		public	const			string															ON_PRODUCT_PURCHASED			= "ON_PRODUCT_PURCHASED";
 		public	const			string															ON_PRODUCT_PURCHASING_FAILED	= "ON_PRODUCT_PURCHASING_FAILED";
 
-		[NonSerialized]			Subject<UnityIAPInitializer>									onInitializedIAP				= new Subject<UnityIAPInitializer>();
-		public					IObservable<UnityIAPInitializer>								OnInitializedIAP				=> onInitializedIAP;
+								Subject<UnityIAPInitializer>									onInitializedIAP				= new Subject<UnityIAPInitializer>();
+		public					IObservable<UnityIAPInitializer>								OnInitializedIAP				=> onInitializedIAP == null ? onInitializedIAP = new Subject<UnityIAPInitializer>() : onInitializedIAP;
 
-		[NonSerialized]			Subject<TransactionContainer>									onProductPurchased				= new Subject<TransactionContainer>();
+								Subject<TransactionContainer>									onProductPurchased				= new Subject<TransactionContainer>();
 		public					IObservable<TransactionContainer>								OnProductPurchased				=> onProductPurchased == null ? onProductPurchased = new Subject<TransactionContainer>() : onProductPurchased;
 
-		[NonSerialized]			Subject<TransactionContainer>									onProductPurchasingFailed		= new Subject<TransactionContainer>();
+								Subject<TransactionContainer>									onProductPurchasingFailed		= new Subject<TransactionContainer>();
 		public					IObservable<TransactionContainer>								OnProductPurchasingFailed		=> onProductPurchasingFailed == null ? onProductPurchasingFailed = new Subject<TransactionContainer>() : onProductPurchasingFailed;
 	
 		public					bool															useFakeStore;

@@ -14,7 +14,7 @@ namespace Project.Store
 	{
 												public	static			StoreSO										Instance				{ get; private set; }
 
-		[NonSerialized]													Subject<UnityIAPInitializer>				onInitialized			= new Subject<UnityIAPInitializer>();
+												private					Subject<UnityIAPInitializer>				onInitialized			= new Subject<UnityIAPInitializer>();
 												public					IObservable<UnityIAPInitializer>			OnInitialized			=> onInitialized;
 
 												private					Subject<StoreSellable>						onPurchaseSuccessful	= new Subject<StoreSellable>();
@@ -96,11 +96,14 @@ namespace Project.Store
 
 		public		virtual void	InvalidateData			()
 		{
+			if (debug) Debug.Log("StoreSO.InvalidateData");
 			_sellablesList = categories
 				.SelectMany	(x => x.Value)
 				.Where		(x => x != null)
 				.Where		(x => !string.IsNullOrEmpty(x.ID))
 				.ToList		();
+
+			if (debug) Debug.Log($"StoreSO.InvalidateData _sellablesList.Count={_sellablesList.Count}");
 
 			_sellablesByID = new Dictionary<string, StoreSellable>();
 			_sellablesList.ForEach(x => _sellablesByID[x.ID] = x);
@@ -125,7 +128,7 @@ namespace Project.Store
 			}
 
 			Instance = this;
-			Debug.Log($"Inited StoreSO: {name}, isPlaying={Application.isPlaying}", this);
+			if (debug) Debug.Log($"Inited StoreSO: {name}, isPlaying={Application.isPlaying}", this);
 
 			compositeDiposable.Clear();
 
@@ -158,10 +161,16 @@ namespace Project.Store
 		}
 		private		void			InitIAP						()
 		{
-			Debug.Log($"Inited StoreSO: {name}, InitIAP", this);
+			if (debug) Debug.Log($"StoreSO: {name}, InitIAP", this);
+			if (SellablesByIAPID == null) Debug.LogError("SellablesByIAPID is null");
+			if (unityIAPInitializer == null)
+			{
+				Debug.LogError("unityIAPInitializer is null, replacing be default UnityIAPInitializer instance");
+				unityIAPInitializer = new UnityIAPInitializer();
+			}
 			unityIAPInitializer.OnInitializedIAP
-				.Subscribe(iapInitializer => onInitialized.OnNext(iapInitializer))
-				.AddTo(compositeDiposable);
+				.Subscribe	(iapInitializer => onInitialized.OnNext(iapInitializer))
+				.AddTo		(compositeDiposable);
 
 			unityIAPInitializer.Init(SellablesByIAPID.Values);
 
@@ -180,23 +189,24 @@ namespace Project.Store
 					onPurchaseFailed.OnNext(sellable);
 				})
 				.AddTo(compositeDiposable);
-			Debug.Log($"Inited StoreSO: {name}, InitIAP completed", this);
+			if (debug) Debug.Log($"StoreSO: {name}, InitIAP completed", this);
 		}
 		private		void			InitDebug					()
 		{
+			if (debug) Debug.Log($"StoreSO: {name}, InitDebug, Debug={debug}", this);
+
 			OnPurchaseSuccessful.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseSuccessful - {x.ID}"))	.AddTo(compositeDiposable);
 			OnInsufficientFunds	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnInsufficientFunds - {x.ID}"))	.AddTo(compositeDiposable);
 			OnPurchaseBlocked	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseBlocked - {x.ID}"))		.AddTo(compositeDiposable);
 			OnPurchaseFailed	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseFailed - {x.ID}"))		.AddTo(compositeDiposable);
-			Debug.Log($"Inited StoreSO: {name}, Debug", this);
 		}
 		public		Product			GetUnityIAPProduct			(StoreSellable sellable) => GetUnityIAPProduct(sellable.IAP_StoreSpecitifID);
 		public		Product			GetUnityIAPProduct			(string storeIAPProductID)
 		{
-			var product = unityIAPInitializer.Product(storeIAPProductID);
+			var product = unityIAPInitializer?.Product(storeIAPProductID);
 			if (product == null)
 			{
-				if (!Application.isEditor && !unityIAPInitializer.useFakeStore) 
+				if (!Application.isEditor && !(unityIAPInitializer?.useFakeStore ?? false)) 
 					Debug.LogError($"No registered product with IAP_ID={storeIAPProductID} found. Please add the product");
 				return null;
 			}
@@ -243,7 +253,7 @@ namespace Project.Store
 
 			if (sellable.isIAP)
 			{
-				unityIAPInitializer.InitiatePurchase(sellable.IAP_StoreSpecitifID);
+				unityIAPInitializer?.InitiatePurchase(sellable.IAP_StoreSpecitifID);
 			}
 			else
 			{
@@ -259,9 +269,6 @@ namespace Project.Store
 			}
 		}
 
-		public		void			RestorePurchases			()
-        {
-			unityIAPInitializer.RestorePurchases();
-		}
+		public		void			RestorePurchases			() => unityIAPInitializer?.RestorePurchases();
 	}
 }
