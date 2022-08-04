@@ -12,7 +12,7 @@ namespace Project.Store
 		[BoxGroup(" ", ShowLabel = false), SerializeField, Required]			public			string	id;
 		[BoxGroup(" ", ShowLabel = false), SerializeField]						protected		string	title;
 		[BoxGroup(" ", ShowLabel = false), SerializeField]						protected		Sprite	sprite;
-		[BoxGroup(" ", ShowLabel = false), NonSerialized, OdinSerialize]		protected		BigInt	quantity	= 0;
+		[BoxGroup(" ", ShowLabel = false), NonSerialized, OdinSerialize]		protected		BigInt	quantity	= 1;
 	
 																				public virtual	string	ID			=> id;
 																				public virtual	string	Title		=> title;

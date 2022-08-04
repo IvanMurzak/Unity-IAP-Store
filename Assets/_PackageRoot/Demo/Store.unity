@@ -1899,6 +1899,30 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 5675121641378320514, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
+    - target: {fileID: 5675121641378320514, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675121641378320514, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"uiPrices.[0].iconCurrency","value":$eref:0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675121641378320514, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"uiPrices.[0].textPrice","value":$eref:1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675121641378320514, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675121641378320514, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 651506888}
+    - target: {fileID: 5675121641378320514, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 651506887}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
 --- !u!224 &651506885 stripped
@@ -1915,6 +1939,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c84a167bfe09e1847a6e2b575aaa301f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &651506887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4721532103278154716, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
+  m_PrefabInstance: {fileID: 651506884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &651506888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4721532103437313471, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
+  m_PrefabInstance: {fileID: 651506884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &682625445 stripped
@@ -2619,7 +2665,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  productID: chiken
+  productID: bear
   refreshOnStart: 0
   refreshOnEnable: 1
   text: {fileID: 1211511602}
@@ -2643,7 +2689,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3896,6 +3942,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84a167bfe09e1847a6e2b575aaa301f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1967702085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1967702087}
+  - component: {fileID: 1967702086}
+  m_Layer: 0
+  m_Name: StoreInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1967702086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967702085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be41a78d9a74f46479be37cd7ac30a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  storeScriptableObject: {fileID: 11400000, guid: dc8f31254caca0343b97bfcd539dea94, type: 2}
+--- !u!4 &1967702087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967702085}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 650.47815, y: 206.15326, z: -1408.7502}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1981990811 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5675121641378320514, guid: 034539c87e5eabc4ab2ffef1e5c0ba71, type: 3}
@@ -4145,59 +4244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84a167bfe09e1847a6e2b575aaa301f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2066568990
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2066568992}
-  - component: {fileID: 2066568991}
-  m_Layer: 0
-  m_Name: Store Installer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2066568991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066568990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be41a78d9a74f46479be37cd7ac30a54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  storeScriptableObject: {fileID: 11400000, guid: dc8f31254caca0343b97bfcd539dea94, type: 2}
---- !u!4 &2066568992
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066568990}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2108173247
 PrefabInstance:
   m_ObjectHideFlags: 0

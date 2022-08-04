@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Project.Store
 {
-    public class SimplePurchaseRestorer : SerializedMonoBehaviour
+    public class SimpleInAppPurchaseRestorer : SerializedMonoBehaviour
     {
         [Button(ButtonSizes.Medium)]
         public void Restore()

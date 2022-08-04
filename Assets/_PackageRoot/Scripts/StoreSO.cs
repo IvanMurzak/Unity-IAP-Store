@@ -70,7 +70,7 @@ namespace Project.Store
 
 																		CompositeDisposable							compositeDiposable		= new CompositeDisposable();
 
-												protected abstract		BigInt										GetBalance				(string currency);
+												public	  abstract		BigInt										GetBalance				(string currency);
 												protected abstract		void										SpendBalance			(string currency, BigInt amount);
 												public	  abstract		IObservable<Price>							OnBalanceChanged		(string currency);
 												protected abstract		void										ApplyPurchase			(List<IStoreSellable> sellables);

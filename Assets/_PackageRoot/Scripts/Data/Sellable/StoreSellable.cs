@@ -21,7 +21,7 @@ namespace Project.Store
 		[Space]
 		[SerializeField]																								protected		string							title;
 		[SerializeField]																								protected		Sprite							sprite;
-		[NonSerialized, OdinSerialize]																					protected		BigInt							quantity							= 0;
+		[NonSerialized, OdinSerialize]																					protected		BigInt							quantity							= 1;
 		[Space]
 		[OnValueChanged("InvalidateData")]																				public			bool							isIAP;
 
