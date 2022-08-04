@@ -125,6 +125,10 @@ Adapter generates multiples items, very easy to setup all of them from single pl
 ![image](https://user-images.githubusercontent.com/9135028/182894888-15171454-b3e7-438b-9a35-dbd11f51c2cc.png)
 
 # How to show player's current currencies balance in UI
+`CurrencyBalanceDrawer_UGUI_TMP` show currency balance and refreshes it when it changed.
+
+![image](https://user-images.githubusercontent.com/9135028/182909230-64a3e610-73b8-463d-8acf-d61c10d8f323.png)
+
 
 # How to show separate price of specific sellable item
 
