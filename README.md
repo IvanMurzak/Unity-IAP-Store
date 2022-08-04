@@ -1,6 +1,9 @@
 # Unity IAP Store
 ![npm](https://img.shields.io/npm/v/extensions.unity.iap.store)
 
+![image](https://user-images.githubusercontent.com/9135028/182879404-d7cbc547-5f3d-4b08-9185-fcaf10b0080c.png)
+
+
 Powerful Store manager for Unity project. You have codeless products management system, where you can create in-game products. Create all currencies with custom names and icons. Each product has price in single or multiple in-game currencies. Ability to create bundle of different products and sell them in single purchase. Any product can be easily swapped to IAP or back to in-game product. Fully supported IAP for iOS and Android out of the box, other platforms supported also, just need to extend fram base class and add needed to you code.
 
 ## Features
@@ -89,5 +92,9 @@ public class DemoTreeStore : StoreSO
 ### 2. Create instance of the new ScriptableObject `DemoStoreSO`
 Create instance and do setup. You can add as many currencies as needed. Also you can use it without currencies at all, if you just need to handle in-app purchases.
 ![Unity_4gPx4Wi804](https://user-images.githubusercontent.com/9135028/182863155-054f4b69-085f-4cae-8e55-3e24b21e1127.gif)
+
+### 3. Add StoreInstaller to any gameObject
+![Unity_uV6ioqFm1l](https://user-images.githubusercontent.com/9135028/182876230-67e7bd27-418d-46ff-8e9c-710a8b2ebe2a.gif)
+
 
 # How to use
