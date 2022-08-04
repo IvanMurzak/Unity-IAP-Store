@@ -10,12 +10,15 @@ Powerful Store manager for Unity project. You have codeless products management 
 
 - ✔️ add custom currencies
 - ✔️ item price in multiple currencies 
+- ✔️ item categorization
 - ✔️ in-app purchases supported for iOS and Android
 - ✔️ currencies management
 - ✔️ pack of multiple products by single purchase
 - ✔️ pack of multiple currencies by single purchase
-- ✔️ sellable drawers for drawing items in Unity UI with ability to override for any other UI system
-- ✔️ sellable category drawers for drawing all items from specific category in Unity UI with ability to override for any other UI system
+- ✔️ drawer for showing items in Unity UI with ability to override for any other UI system
+- ✔️ drawer adapter for showing all items from specific category in Unity UI with ability to override for any other UI system
+- ✔️ drawer adapter for showing all items from specific category in Unity UI with ability to override for any other UI system
+
 
 # How to install
 
@@ -53,6 +56,7 @@ Powerful Store manager for Unity project. You have codeless products management 
 }
 ```
 
+
 # How to setup
 ### 1. Extends from `StoreSO`
 Override at least abstract method. You should take of saving your data in persistent memory. There are basic methods required to implement in the example below.
@@ -65,8 +69,8 @@ using UniRx;
 using Project.Store;
 using BigInt = System.Numerics.BigInteger;
 
-[CreateAssetMenu(fileName = "DemoTreeStore", menuName = "Store/DemoTreeStore")]
-public class DemoTreeStore : StoreSO
+[CreateAssetMenu(fileName = "MyStore", menuName = "Store/MyStore")]
+public class MyStore : StoreSO
 {
     [OdinSerialize, NonSerialized]
     public ReactiveProperty<BigInt> balance = new ReactiveProperty<BigInt>();
@@ -91,7 +95,7 @@ public class DemoTreeStore : StoreSO
     }
 }
 ```
-### 2. Create instance of the new ScriptableObject `DemoStoreSO`
+### 2. Create instance of the new ScriptableObject `MyStore`
 Create instance and do setup. You can add as many currencies as needed. Also you can use it without currencies at all, if you just need to handle in-app purchases.
 ![Unity_4gPx4Wi804](https://user-images.githubusercontent.com/9135028/182863155-054f4b69-085f-4cae-8e55-3e24b21e1127.gif)
 
@@ -99,4 +103,29 @@ Create instance and do setup. You can add as many currencies as needed. Also you
 ![Unity_uV6ioqFm1l](https://user-images.githubusercontent.com/9135028/182876230-67e7bd27-418d-46ff-8e9c-710a8b2ebe2a.gif)
 
 
-# How to use
+# How to show sellable item(s) in UI
+
+This system is quite independent, but you need to show sellable items for a user, to make ability for a user to buy them. There are multiple ways to do that.
+
+- create prefab for drawing UI element which represent single item for selling. If you need you can use multiple prefabs for different reasons in different places
+- add `StoreSellableDrawer_UGUI` component to the prefab
+- bind all required elements to the component
+
+![image](https://user-images.githubusercontent.com/9135028/182894050-03907564-178f-4ea9-890c-056dcb8ba9a2.png)
+
+It can be used for showing single sellable item.
+
+## Adapters
+- `StoreCategoryAdapter` - shows list of sellable items from specific category
+- `StoreCustomAdapter` - shows custom list of sellable items
+- Or create your own StoreAdapter, for that need to extand from `StoreAdapter`. Also you may create custom StoreSellableDrawer for any UI system in case if you don't use Unity UI.
+
+![image](https://user-images.githubusercontent.com/9135028/182894888-15171454-b3e7-438b-9a35-dbd11f51c2cc.png)
+
+# How to show player's current currencies balance in UI
+
+# How to show separate price of specific sellable item
+
+That is easy. Just create any gameObject with Text component and add `PriceDrawer` on it.
+
+![image](https://user-images.githubusercontent.com/9135028/182895876-2cc5b343-b3c7-4a71-8552-1e5c259939ab.png)
