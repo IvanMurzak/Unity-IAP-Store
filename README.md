@@ -27,7 +27,7 @@ Powerful Store manager for Unity project. You have codeless products management 
 ```json
 {
   "dependencies": {
-    "extensions.unity.iap.store": "2.3.5",
+    "extensions.unity.iap.store": "2.3.6",
   },
   "scopedRegistries": [
     {
