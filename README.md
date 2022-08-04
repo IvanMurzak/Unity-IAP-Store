@@ -80,7 +80,7 @@ public class MyStore : StoreSO
         return balance.Select(x => new Price(currency, x));
     }
 
-    protected override BigInt GetBalance(string currency)
+    public override BigInt GetBalance(string currency)
     {
         return balance.Value;
     }
