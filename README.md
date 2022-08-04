@@ -14,6 +14,8 @@ Powerful Store manager for Unity project. You have codeless products management 
 - ✔️ currencies management
 - ✔️ pack of multiple products by single purchase
 - ✔️ pack of multiple currencies by single purchase
+- ✔️ sellable drawers for drawing items in Unity UI with ability to override for any other UI system
+- ✔️ sellable category drawers for drawing all items from specific category in Unity UI with ability to override for any other UI system
 
 # How to install
 
