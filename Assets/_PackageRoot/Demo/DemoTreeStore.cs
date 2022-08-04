@@ -1,12 +1,12 @@
-﻿using Project.Store;
-using Sirenix.Serialization;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using UniRx;
+using Sirenix.Serialization;
 using UnityEngine;
+using UniRx;
+using Project.Store;
 using BigInt = System.Numerics.BigInteger;
 
-[CreateAssetMenu(fileName = "DemoTreeStore", menuName = "Plugins/DemoTreeStore")]
+[CreateAssetMenu(fileName = "DemoTreeStore", menuName = "Store/DemoTreeStore")]
 public class DemoTreeStore : StoreSO
 {
     [OdinSerialize, NonSerialized]
