@@ -116,6 +116,8 @@ This system is quite independent, but you need to show sellable items for a user
 It can be used for showing single sellable item.
 
 ## Adapters
+Adapter generates multiples items, very easy to setup all of them from single place with small amount of setup steps.
+
 - `StoreCategoryAdapter` - shows list of sellable items from specific category
 - `StoreCustomAdapter` - shows custom list of sellable items
 - Or create your own StoreAdapter, for that need to extand from `StoreAdapter`. Also you may create custom StoreSellableDrawer for any UI system in case if you don't use Unity UI.
@@ -129,3 +131,12 @@ It can be used for showing single sellable item.
 That is easy. Just create any gameObject with Text component and add `PriceDrawer` on it.
 
 ![image](https://user-images.githubusercontent.com/9135028/182895876-2cc5b343-b3c7-4a71-8552-1e5c259939ab.png)
+
+
+# Other
+- to execute `Purchase` action without sellable item drawer and/or adapter use `SimplePurchaser`
+- to restore non-consumable in-app purchases use `SimpleInAppPurchaseRestorer`
+
+![image](https://user-images.githubusercontent.com/9135028/182900204-5c9dddf7-87f6-4c34-b76d-6e70b1b8ae64.png)
+
+
