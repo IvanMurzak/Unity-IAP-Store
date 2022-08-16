@@ -161,7 +161,7 @@ namespace Project.Store
 		}
 		private		void			InitIAP						()
 		{
-			if (debug) Debug.Log($"StoreSO: {name}, InitIAP", this);
+			if (debug) Debug.Log($"StoreSO.InitIAP: {name}", this);
 			if (SellablesByIAPID == null) Debug.LogError("SellablesByIAPID is null");
 			if (unityIAPInitializer == null)
 			{
@@ -189,11 +189,11 @@ namespace Project.Store
 					onPurchaseFailed.OnNext(sellable);
 				})
 				.AddTo(compositeDiposable);
-			if (debug) Debug.Log($"StoreSO: {name}, InitIAP completed", this);
+			if (debug) Debug.Log($"StoreSO.InitIAP: {name}, completed", this);
 		}
 		private		void			InitDebug					()
 		{
-			if (debug) Debug.Log($"StoreSO: {name}, InitDebug, Debug={debug}", this);
+			if (debug) Debug.Log($"StoreSO.InitDebug: {name}, Debug={debug}", this);
 
 			OnPurchaseSuccessful.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseSuccessful - {x.ID}"))	.AddTo(compositeDiposable);
 			OnInsufficientFunds	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnInsufficientFunds - {x.ID}"))	.AddTo(compositeDiposable);
@@ -207,7 +207,7 @@ namespace Project.Store
 			if (product == null)
 			{
 				if (!Application.isEditor && !(unityIAPInitializer?.useFakeStore ?? false)) 
-					Debug.LogError($"No registered product with IAP_ID={storeIAPProductID} found. Please add the product");
+					Debug.LogError($"No registered product with IAP_ID={storeIAPProductID} found. Please add the product", this);
 				return null;
 			}
 			return product;
@@ -234,6 +234,7 @@ namespace Project.Store
 		{
 			foreach (var required in sellable.required)
 			{
+				if (debug) Debug.Log($"Store.SpendBalance, {required.Amount} of {required.Currency}", this);
 				SpendBalance(required.Currency, required.Amount);
 			}
 		}
@@ -241,6 +242,9 @@ namespace Project.Store
 		{
 			var sellables = new List<IStoreSellable>() { sellable };
 				sellables.AddRange(sellable.SubSellables);
+
+			if (debug) sellables.ForEach(s => Debug.Log($"Store.ApplyPurchaseInternal, for ID={s.ID}, Quantity={s.Quantity}, Title={s.Title}", this));
+
 			ApplyPurchase(sellables);
 
 			onPurchaseSuccessful.OnNext(sellable);
@@ -248,27 +252,36 @@ namespace Project.Store
 		public		void			Purchase					(string id) => Purchase(GetSellable(id));
 		public		void			Purchase					(StoreSellable sellable)
 		{
+			if (debug) Debug.Log($"Store.Purchase, sellable.ID = {sellable.ID}, isIAP={sellable.isIAP}", this);
+
 			// TODO: implement is Blocked check
 			// if (sellable.IsBlocked)
 
 			if (sellable.isIAP)
 			{
+				if (debug) Debug.Log($"Store.Purchase, sellable.IAP_StoreSpecitifID = {sellable.IAP_StoreSpecitifID}", this);
 				unityIAPInitializer?.InitiatePurchase(sellable.IAP_StoreSpecitifID);
 			}
 			else
 			{
 				if (IsEnoughBalance(sellable))
 				{
+					if (debug) Debug.Log($"Store.Purchase, IsEnoughBalance = true", this);
 					SpendBalance(sellable);
 					ApplyPurchaseInternal(sellable);
 				}
 				else
 				{
+					if (debug) Debug.Log($"Store.Purchase, IsEnoughBalance = false, onInsufficientFunds emmits", this);
 					onInsufficientFunds.OnNext(sellable);
 				}
 			}
 		}
 
-		public		void			RestorePurchases			() => unityIAPInitializer?.RestorePurchases();
+		public		void			RestorePurchases			()
+		{
+			if (debug) Debug.Log($"Store.RestorePurchases", this);
+			unityIAPInitializer?.RestorePurchases();
+		}
 	}
 }
