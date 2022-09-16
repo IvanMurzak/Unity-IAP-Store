@@ -12,37 +12,43 @@ namespace Project.Store
 {
 	public abstract class StoreSO : SerializedScriptableObject
 	{
-												public	static			StoreSO										Instance				{ get; private set; }
+												public	static			StoreSO																Instance					{ get; private set; }
 
-												private					Subject<UnityIAPInitializer>				onInitialized			= new Subject<UnityIAPInitializer>();
-												public					IObservable<UnityIAPInitializer>			OnInitialized			=> onInitialized;
+												private					Subject<UnityIAPInitializer>										onInitialized				= new Subject<UnityIAPInitializer>();
+												public					IObservable<UnityIAPInitializer>									OnInitialized				=> onInitialized;
 
-												private					Subject<StoreSellable>						onPurchaseSuccessful	= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>					OnPurchaseSuccessful	=> onPurchaseSuccessful;
+												private					Subject<StoreSellable>												onPurchaseSuccessful		= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>											OnPurchaseSuccessful		=> onPurchaseSuccessful;
 
-												private					Subject<StoreSellable>						onInsufficientFunds		= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>					OnInsufficientFunds		=> onInsufficientFunds;
+												private					Subject<StoreSellable>												onInsufficientFunds			= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>											OnInsufficientFunds			=> onInsufficientFunds;
 
-												private					Subject<StoreSellable>						onPurchaseFailed		= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>					OnPurchaseFailed		=> onPurchaseFailed;
+												private					Subject<StoreSellable>												onPurchaseFailed			= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>											OnPurchaseFailed			=> onPurchaseFailed;
+
+												private					Subject<(StoreSellable sellable, PurchaseFailureReason reason)>		onIAPPurchaseFailed			= new Subject<(StoreSellable sellable, PurchaseFailureReason reason)>();
+												public					IObservable<(StoreSellable sellable, PurchaseFailureReason reason)> OnIAPPurchaseFailed			=> onIAPPurchaseFailed;
+
+												private					Subject<bool>														onRestorePurchasesCompleted	= new Subject<bool>();
+												public					IObservable<bool>													OnRestorePurchasesCompleted	=> onRestorePurchasesCompleted;
 
 												// TODO: implement Blocked event
-												private					Subject<StoreSellable>						onPurchaseBlocked		= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>					OnPurchaseBlocked		=> onPurchaseBlocked;
+												private					Subject<StoreSellable>												onPurchaseBlocked			= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>											OnPurchaseBlocked			=> onPurchaseBlocked;
 
-		[OnValueChanged("OnEnable")]			public					bool										isActive				= true;
-												public					bool										debug;
-		[Required]								public					UnityIAPInitializer							unityIAPInitializer;
+		[OnValueChanged("OnEnable")]			public					bool																isActive					= true;
+												public					bool																debug;
+		[Required]								public					UnityIAPInitializer													unityIAPInitializer;
 		[OnValueChanged("InvalidateData")]
-		[Required, HideReferenceObjectPicker]	public					List<Currency>								currencies              = new List<Currency>();
+		[Required, HideReferenceObjectPicker]	public					List<Currency>														currencies					= new List<Currency>();
 		[OnValueChanged("InvalidateData")]
-		[Required, HideReferenceObjectPicker]	public					Dictionary<string, List<StoreSellable>>		categories				= new Dictionary<string, List<StoreSellable>>();
+		[Required, HideReferenceObjectPicker]	public					Dictionary<string, List<StoreSellable>>								categories					= new Dictionary<string, List<StoreSellable>>();
 	
-																		List<StoreSellable>							_sellablesList;
-																		Dictionary<string, StoreSellable>			_sellablesByIAPID;
-																		Dictionary<string, StoreSellable>			_sellablesByID;
+																		List<StoreSellable>													_sellablesList;
+																		Dictionary<string, StoreSellable>									_sellablesByIAPID;
+																		Dictionary<string, StoreSellable>									_sellablesByID;
 																		
-																		List<StoreSellable>							SellablesList
+																		List<StoreSellable>								SellablesList
 																		{
 																			get
 																			{
@@ -50,7 +56,7 @@ namespace Project.Store
 																				return _sellablesList;
 																			}
 																		}
-																		Dictionary<string, StoreSellable>			SellablesByIAPID
+																		Dictionary<string, StoreSellable>				SellablesByIAPID
 																		{
 																			get
 																			{
@@ -58,7 +64,7 @@ namespace Project.Store
 																				return _sellablesByIAPID;
 																			}
 																		}
-																		Dictionary<string, StoreSellable>			SellablesByID
+																		Dictionary<string, StoreSellable>				SellablesByID
 																		{
 																			get
 																			{
@@ -68,31 +74,31 @@ namespace Project.Store
 																		}
 
 
-																		CompositeDisposable							compositeDiposable		= new CompositeDisposable();
+																		CompositeDisposable								compositeDiposable		= new CompositeDisposable();
 
-												public	  abstract		BigInt										GetBalance				(string currency);
-												protected abstract		void										SpendBalance			(string currency, BigInt amount);
-												public	  abstract		IObservable<Price>							OnBalanceChanged		(string currency);
-												protected abstract		void										ApplyPurchase			(List<IStoreSellable> sellables);
+												public	  abstract		BigInt											GetBalance				(string currency);
+												protected abstract		void											SpendBalance			(string currency, BigInt amount);
+												public	  abstract		IObservable<Price>								OnBalanceChanged		(string currency);
+												protected abstract		void											ApplyPurchase			(List<IStoreSellable> sellables);
 	
-												public					bool										IsEnoughBalance			(Price price)				=> price.Amount <= GetBalance(price.Currency);
-												public					bool										IsEnoughBalance			(StoreSellable sellable)	=> sellable.isIAP ? true : sellable.required.All(x => IsEnoughBalance(x));
-												public                  ReadOnlyReactiveProperty<bool>				IsEnoughBalanceReactive	(StoreSellable sellable)	=> sellable.isIAP ? new BoolReactiveProperty(true).ToReadOnlyReactiveProperty() : 
-																																										Observable.Merge
-																																										(
-																																											sellable.required.Select(price => OnBalanceChanged(price.Currency).Select(x => IsEnoughBalance(price)))
-																																										).ToReadOnlyReactiveProperty();
+												public					bool											IsEnoughBalance			(Price price)				=> price.Amount <= GetBalance(price.Currency);
+												public					bool											IsEnoughBalance			(StoreSellable sellable)	=> sellable.isIAP ? true : sellable.required.All(x => IsEnoughBalance(x));
+												public                  ReadOnlyReactiveProperty<bool>					IsEnoughBalanceReactive	(StoreSellable sellable)	=> sellable.isIAP ? new BoolReactiveProperty(true).ToReadOnlyReactiveProperty() : 
+																																											Observable.Merge
+																																											(
+																																												sellable.required.Select(price => OnBalanceChanged(price.Currency).Select(x => IsEnoughBalance(price)))
+																																											).ToReadOnlyReactiveProperty();
 
-												public					StoreSellable								GetSellable				(string id)					=> id == null ? null : SellablesByID.ContainsKey(id) ? SellablesByID[id] : null;
-												public					Sprite										GetCurrencyIcon			(string currency)			=> currencies.First(x => x.name == currency).icon;
+												public					StoreSellable									GetSellable				(string id)					=> id == null ? null : SellablesByID.ContainsKey(id) ? SellablesByID[id] : null;
+												public					Sprite											GetCurrencyIcon			(string currency)			=> currencies.First(x => x.name == currency).icon;
 
-												public					string[]									AllCurrenciesNames()	=> currencies.Select(x => x.name).ToArray();
-												public					string[]									AllSellableIDs()		=> SellablesList.Select(x => x.ID).ToArray();
-												public					string[]									AllCategories()			=> categories.Keys.ToArray();
+												public					string[]										AllCurrenciesNames()	=> currencies.Select(x => x.name).ToArray();
+												public					string[]										AllSellableIDs()		=> SellablesList.Select(x => x.ID).ToArray();
+												public					string[]										AllCategories()			=> categories.Keys.ToArray();
 
-												public					bool										ValidateID				(string id)			=> id == null ? false : GetSellable(id) != null;
-												public					bool										ValidateCurrency		(string currency)   => currency == null ? false : AllCurrenciesNames().Contains(currency);
-												public					bool										ValidateCategory		(string category)	=> category == null ? false : categories.ContainsKey(category);
+												public					bool											ValidateID				(string id)			=> id == null ? false : GetSellable(id) != null;
+												public					bool											ValidateCurrency		(string currency)   => currency == null ? false : AllCurrenciesNames().Contains(currency);
+												public					bool											ValidateCategory		(string category)	=> category == null ? false : categories.ContainsKey(category);
 
 		public		virtual void	InvalidateData			()
 		{
@@ -141,7 +147,10 @@ namespace Project.Store
 			OnInsufficientFunds	.Subscribe(OnInsufficientFundsEvent)	.AddTo(compositeDiposable);
 			OnPurchaseSuccessful.Subscribe(OnPurchaseSuccessfulEvent)	.AddTo(compositeDiposable);
 			OnPurchaseFailed	.Subscribe(OnPurchaseFailedEvent)		.AddTo(compositeDiposable);
+			OnIAPPurchaseFailed	.Subscribe(OnIAPPurchaseFailedEvent)	.AddTo(compositeDiposable);
 			OnPurchaseBlocked	.Subscribe(OnPurchaseBlockedEvent)		.AddTo(compositeDiposable);
+
+			OnRestorePurchasesCompleted.Subscribe(OnRestorePurchasesCompletedEvent).AddTo(compositeDiposable);
 
 			if (Application.isPlaying)
 			{
@@ -187,50 +196,59 @@ namespace Project.Store
 				{
 					var sellable = SellablesByIAPID[transaction.productId];
 					onPurchaseFailed.OnNext(sellable);
+					onIAPPurchaseFailed.OnNext((sellable, transaction.failureReason));
 				})
 				.AddTo(compositeDiposable);
+
+			unityIAPInitializer.OnRestorePurchasesCompleted
+				.Subscribe(onRestorePurchasesCompleted.OnNext)
+				.AddTo(compositeDiposable);
+
 			if (debug) Debug.Log($"StoreSO.InitIAP: {name}, completed", this);
 		}
-		private		void			InitDebug					()
+		private		void			InitDebug						()
 		{
 			if (debug) Debug.Log($"StoreSO.InitDebug: {name}, Debug={debug}", this);
 
-			OnPurchaseSuccessful.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseSuccessful - {x.ID}"))	.AddTo(compositeDiposable);
-			OnInsufficientFunds	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnInsufficientFunds - {x.ID}"))	.AddTo(compositeDiposable);
-			OnPurchaseBlocked	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseBlocked - {x.ID}"))		.AddTo(compositeDiposable);
-			OnPurchaseFailed	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseFailed - {x.ID}"))		.AddTo(compositeDiposable);
+			OnPurchaseSuccessful.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseSuccessful - {x.ID}"))								.AddTo(compositeDiposable);
+			OnInsufficientFunds	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnInsufficientFunds - {x.ID}"))								.AddTo(compositeDiposable);
+			OnPurchaseBlocked	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseBlocked - {x.ID}"))									.AddTo(compositeDiposable);
+			OnPurchaseFailed	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnPurchaseFailed - {x.ID}"))									.AddTo(compositeDiposable);
+			OnIAPPurchaseFailed	.Where(x => debug).Subscribe(x => Debug.Log($"{name}: OnIAPPurchaseFailed - {x.sellable.ID}, Reason - {x.reason}"))	.AddTo(compositeDiposable);
 		}
-		public		Product			GetUnityIAPProduct			(StoreSellable sellable) => GetUnityIAPProduct(sellable.IAP_StoreSpecitifID);
-		public		Product			GetUnityIAPProduct			(string storeIAPProductID)
+		public		Product			GetUnityIAPProduct				(StoreSellable sellable) => GetUnityIAPProduct(sellable.IAP_StoreSpecitifID);
+		public		Product			GetUnityIAPProduct				(string storeIAPProductID)
 		{
 			var product = unityIAPInitializer?.Product(storeIAPProductID);
 			if (product == null)
 			{
-				if (!Application.isEditor && !(unityIAPInitializer?.useFakeStore ?? false)) 
+				if (!Application.isEditor && !(unityIAPInitializer?.useFakeStore ?? false))
 					Debug.LogError($"No registered product with IAP_ID={storeIAPProductID} found. Please add the product", this);
 				return null;
 			}
 			return product;
 		}
-		public		decimal			GetIAPPrice					(StoreSellable sellable)
+		public		decimal			GetIAPPrice						(StoreSellable sellable)
 		{
 			var product = GetUnityIAPProduct(sellable);
 			if (product == null) return -1;
 			return product.metadata.localizedPrice;
 		}
-		public		string			GetIAPPriceString			(StoreSellable sellable)
+		public		string			GetIAPPriceString				(StoreSellable sellable)
 		{
 			var product = GetUnityIAPProduct(sellable);
 			if (product == null) return null;
 			return product.metadata.localizedPriceString;
 		}
 
-		protected   virtual void	OnInsufficientFundsEvent	(StoreSellable sellable) { }
-		protected   virtual void	OnPurchaseSuccessfulEvent	(StoreSellable sellable) { }
-		protected   virtual void	OnPurchaseFailedEvent		(StoreSellable sellable) { }
-		protected   virtual void	OnPurchaseBlockedEvent		(StoreSellable sellable) { }
+		protected   virtual void	OnInsufficientFundsEvent		(StoreSellable sellable) { }
+		protected   virtual void	OnPurchaseSuccessfulEvent		(StoreSellable sellable) { }
+		protected   virtual void	OnPurchaseFailedEvent			(StoreSellable sellable) { }
+		protected   virtual void	OnIAPPurchaseFailedEvent		((StoreSellable sellable, PurchaseFailureReason reason) data) { }
+		protected   virtual void	OnRestorePurchasesCompletedEvent(bool success) { }
+		protected   virtual void	OnPurchaseBlockedEvent			(StoreSellable sellable) { }
 
-		protected	void			SpendBalance				(StoreSellable sellable)
+		protected	void			SpendBalance					(StoreSellable sellable)
 		{
 			foreach (var required in sellable.required)
 			{
@@ -238,7 +256,7 @@ namespace Project.Store
 				SpendBalance(required.Currency, required.Amount);
 			}
 		}
-		private		void			ApplyPurchaseInternal		(StoreSellable sellable)
+		private		void			ApplyPurchaseInternal			(StoreSellable sellable)
 		{
 			var sellables = new List<IStoreSellable>() { sellable };
 				sellables.AddRange(sellable.SubSellables);
@@ -249,8 +267,8 @@ namespace Project.Store
 
 			onPurchaseSuccessful.OnNext(sellable);
 		}
-		public		void			Purchase					(string id) => Purchase(GetSellable(id));
-		public		void			Purchase					(StoreSellable sellable)
+		public		void			Purchase						(string id) => Purchase(GetSellable(id));
+		public		void			Purchase						(StoreSellable sellable)
 		{
 			if (debug) Debug.Log($"Store.Purchase, sellable.ID = {sellable.ID}, isIAP={sellable.isIAP}", this);
 
@@ -278,7 +296,7 @@ namespace Project.Store
 			}
 		}
 
-		public		void			RestorePurchases			()
+		public		void			RestorePurchases				()
 		{
 			if (debug) Debug.Log($"Store.RestorePurchases", this);
 			unityIAPInitializer?.RestorePurchases();

@@ -22,6 +22,9 @@ namespace Project.Store
 
 								Subject<TransactionContainer>									onProductPurchasingFailed		= new Subject<TransactionContainer>();
 		public					IObservable<TransactionContainer>								OnProductPurchasingFailed		=> onProductPurchasingFailed == null ? onProductPurchasingFailed = new Subject<TransactionContainer>() : onProductPurchasingFailed;
+
+								Subject<bool>													onRestorePurchasesCompleted		= new Subject<bool>();
+		public					IObservable<bool>												OnRestorePurchasesCompleted		=> onRestorePurchasesCompleted == null ? onRestorePurchasesCompleted = new Subject<bool>() : onRestorePurchasesCompleted;
 	
 		public					bool															useFakeStore;
 		[ShowIf("useFakeStore")]
@@ -96,11 +99,13 @@ namespace Project.Store
 			{
 				Debug.Log($"Restore Transactions completed with status:{(success ? "success" : "failed")}");
 				if (success) InvalidateRestoredProducts(nonConsumableProducts);
+				onRestorePurchasesCompleted.OnNext(success);
 			});
 			extensionsGooglePlayStore?.RestoreTransactions(success =>
 			{
 				Debug.Log($"Restore Transactions completed with status:{(success ? "success" : "failed")}");
 				if (success) InvalidateRestoredProducts(nonConsumableProducts);
+				onRestorePurchasesCompleted.OnNext(success);
 			});
 			extensionsMicrosoft?.RestoreTransactions();
 			// extensionsUDP does not exist in UDP API
