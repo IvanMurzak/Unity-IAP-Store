@@ -27,7 +27,7 @@ Powerful Store manager for Unity project. You have codeless products management 
 ```json
 {
   "dependencies": {
-    "extensions.unity.iap.store": "2.3.6",
+    "extensions.unity.iap.store": "4.4.1",
   },
   "scopedRegistries": [
     {
@@ -43,13 +43,6 @@ Powerful Store manager for Unity project. You have codeless products management 
       "scopes": [
         "com.cysharp",
         "com.neuecc"
-      ]
-    },
-    {
-      "name": "Packages from jillejr",
-      "url": "https://npm.cloudsmith.io/jillejr/newtonsoft-json-for-unity/",
-      "scopes": [
-        "jillejr"
       ]
     }
   ]
