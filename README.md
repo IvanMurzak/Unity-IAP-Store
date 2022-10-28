@@ -20,7 +20,14 @@ Powerful Store manager for Unity project. You have codeless products management 
 - ✔️ drawer adapter for showing all items from specific category in Unity UI with ability to override for any other UI system
 
 
-# How to install
+# How to install - Option 1 (RECOMMENDED)
+
+- Install [ODIN Inspector](https://odininspector.com/)
+- Install [OpenUPM-CLI](https://github.com/openupm/openupm-cli#installation)
+- Open command line in Unity project folder
+- `openupm --registry https://registry.npmjs.org add extensions.unity.iap.store`
+
+# How to install - Option 2
 
 - Install [ODIN Inspector](https://odininspector.com/)
 - Add this code to <code>/Packages/manifest.json</code>
