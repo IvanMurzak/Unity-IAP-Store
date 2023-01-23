@@ -154,7 +154,7 @@ namespace Project.Store
 			if (isInited && controller != null) return;
 			var productDefinitions = iapSellables.Select(x =>
 			{
-				var definition = new ProductDefinition(x.ID, x.IAP_StoreSpecitifID, x.IAP_ProductType, true, x.IAP_PayoutDefinition);
+				var definition = new StoreProductDefinition(x.ID, x.IAP_StoreSpecitifID, x.IAP_ProductType, true, x.IAP_PayoutDefinition, x.applePromotionVisibility);
 				return definition;
 			});
 			foreach (var definition in productDefinitions)
@@ -191,7 +191,7 @@ namespace Project.Store
 			// Set all these products to be visible in the user's App Store
 			foreach (var item in controller.products.all)
 			{
-				if (item.availableToPurchase) extensionsApple?.SetStorePromotionVisibility(item, AppleStorePromotionVisibility.Show);				
+				if (item.availableToPurchase) extensionsApple?.SetStorePromotionVisibility(item, ((StoreProductDefinition)item.definition).applePromotionVisibility);				
 			}
 
 			Debug.Log("StoreSO: Unity IAP Initialized");
