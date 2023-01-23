@@ -26,8 +26,8 @@ namespace Project.Store
 								Subject<bool>													onRestorePurchasesCompleted		= new Subject<bool>();
 		public					IObservable<bool>												OnRestorePurchasesCompleted		=> onRestorePurchasesCompleted == null ? onRestorePurchasesCompleted = new Subject<bool>() : onRestorePurchasesCompleted;
 		
-								Subject<Product>												onProductPromotionalPurchase	= new Subject<Product>();
-		public					IObservable<Product>											OnProductPromotionalPurchase	=> onProductPromotionalPurchase == null ? onProductPromotionalPurchase = new Subject<Product>() : onProductPromotionalPurchase;
+								Subject<Product>												onProductPromotionalPurchased	= new Subject<Product>();
+		public					IObservable<Product>											OnProductPromotionalPurchased	=> onProductPromotionalPurchased == null ? onProductPromotionalPurchased = new Subject<Product>() : onProductPromotionalPurchased;
 
 		public					bool															useFakeStore;
 		[ShowIf("useFakeStore")]
@@ -191,7 +191,7 @@ namespace Project.Store
 			// Set all these products to be visible in the user's App Store
 			foreach (var item in controller.products.all)
 			{
-				if (item.availableToPurchase) extensionsApple.SetStorePromotionVisibility(item, AppleStorePromotionVisibility.Show);				
+				if (item.availableToPurchase) extensionsApple?.SetStorePromotionVisibility(item, AppleStorePromotionVisibility.Show);				
 			}
 
 			Debug.Log("StoreSO: Unity IAP Initialized");
@@ -232,8 +232,16 @@ namespace Project.Store
 			});
 		}
 
-		public		virtual		void															OnPromotionalPurchase			(Product i) => onProductPromotionalPurchase.OnNext(i);
+		protected	virtual		void															OnPromotionalPurchase			(Product i)
+		{
+			Debug.Log($"OnPromotionalPurchase purchase id={i.definition.id}");
+			onProductPromotionalPurchased.OnNext(i);
+		}
 
-		public		virtual		void															ContinuePromotionalPurchases	()			=> extensionsApple.ContinuePromotionalPurchases();
+		public		virtual		void															ContinuePromotionalPurchases	()
+		{
+			Debug.Log($"ContinuePromotionalPurchases");
+			extensionsApple?.ContinuePromotionalPurchases();
+		}
 	}
 }

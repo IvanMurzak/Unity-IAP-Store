@@ -32,8 +32,8 @@ namespace Project.Store
 												private					Subject<bool>														onRestorePurchasesCompleted		= new Subject<bool>();
 												public					IObservable<bool>													OnRestorePurchasesCompleted		=> onRestorePurchasesCompleted;
 		
-												private					Subject<StoreSellable>												onProductPromotionalPurchase	= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>											OnProductPromotionalPurchase	=> onProductPromotionalPurchase;
+												private					Subject<StoreSellable>												onProductPromotionalPurchased	= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>											OnProductPromotionalPurchased	=> onProductPromotionalPurchased;
 
 												// TODO: implement Blocked event
 												private					Subject<StoreSellable>												onPurchaseBlocked				= new Subject<StoreSellable>();
@@ -154,7 +154,7 @@ namespace Project.Store
 			OnPurchaseBlocked			.Subscribe(OnPurchaseBlockedEvent)				.AddTo(compositeDiposable);
 
 			OnRestorePurchasesCompleted	.Subscribe(OnRestorePurchasesCompletedEvent)	.AddTo(compositeDiposable);
-			OnProductPromotionalPurchase.Subscribe(OnProductPromotionalPurchaseEvent)	.AddTo(compositeDiposable);
+			OnProductPromotionalPurchased.Subscribe(OnProductPromotionalPurchaseEvent)	.AddTo(compositeDiposable);
 
 			if (Application.isPlaying)
 			{
@@ -208,12 +208,13 @@ namespace Project.Store
 				.Subscribe(onRestorePurchasesCompleted.OnNext)
 				.AddTo(compositeDiposable);
 
-			unityIAPInitializer.OnProductPromotionalPurchase
+			unityIAPInitializer.OnProductPromotionalPurchased
 				.Subscribe(item =>
 				{
-					// Handle this event by, e.g. presenting a parental gate.
+					// Handle this event by, e.g. presenting a parental gates.
+					if (debug) Debug.Log($"StoreSO.OnProductPromotionalPurchased: {item.definition.id}", this);
 					var sellable = SellablesByIAPID[item.definition.id];
-					onProductPromotionalPurchase.OnNext(sellable);
+					onProductPromotionalPurchased.OnNext(sellable);
 				})
 				.AddTo(compositeDiposable);
 
@@ -316,7 +317,6 @@ namespace Project.Store
 			unityIAPInitializer?.RestorePurchases();
 		}
 
-		// You must call IAppleExtensions.ContinuePromotionalPurchases() to continue with the promotional purchase.
 		public		void			ContinuePromotionalPurchases	()
 		{
 			if (debug) Debug.Log($"Store.ContinuePromotionalPurchases", this);
