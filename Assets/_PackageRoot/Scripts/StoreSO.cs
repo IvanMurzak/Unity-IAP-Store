@@ -47,6 +47,7 @@ namespace Project.Store
 		[OnValueChanged("InvalidateData")]
 		[Required, HideReferenceObjectPicker]	public					Dictionary<string, List<StoreSellable>>								categories						= new Dictionary<string, List<StoreSellable>>();
 	
+																		StoreSellable														_sellableApplePromotional;
 																		List<StoreSellable>													_sellablesList;
 																		Dictionary<string, StoreSellable>									_sellablesByIAPID;
 																		Dictionary<string, StoreSellable>									_sellablesByID;
@@ -103,6 +104,7 @@ namespace Project.Store
 												public					bool											ValidateCurrency		(string currency)   => currency == null ? false : AllCurrenciesNames().Contains(currency);
 												public					bool											ValidateCategory		(string category)	=> category == null ? false : categories.ContainsKey(category);
 
+												public					bool											IsSellableApplePromotional					=> _sellableApplePromotional != null;
 		public		virtual void	InvalidateData			()
 		{
 			if (debug) Debug.Log("StoreSO.InvalidateData");
@@ -213,8 +215,8 @@ namespace Project.Store
 				{
 					// Handle this event by, e.g. presenting a parental gates.
 					if (debug) Debug.Log($"StoreSO.OnProductPromotionalPurchased: {item.definition.id}", this);
-					var sellable = SellablesByIAPID[item.definition.id];
-					onProductPromotionalPurchased.OnNext(sellable);
+					_sellableApplePromotional = GetSellable(item.definition.id);
+					onProductPromotionalPurchased.OnNext(_sellableApplePromotional);
 				})
 				.AddTo(compositeDiposable);
 
@@ -320,6 +322,7 @@ namespace Project.Store
 		public		void			ContinuePromotionalPurchases	()
 		{
 			if (debug) Debug.Log($"Store.ContinuePromotionalPurchases", this);
+			_sellableApplePromotional = null;
 			unityIAPInitializer?.ContinuePromotionalPurchases();
 		}
 	}
