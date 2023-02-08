@@ -5,6 +5,11 @@
   "version": "4.5.2",
   "unity": "2020.3",
   "description": "Unity IAP (4.5.2) wrapper for simple usage",
+  "keywords": [
+    "purchasing",
+    "iap",
+    "unity"
+  ],
   "dependencies": {
     "com.unity.purchasing": "4.5.2",
     "com.cysharp.unitask": "2.3.3",
@@ -12,13 +17,6 @@
   },
   "scopedRegistries": [
     {
-      "name": "Unity Extensions",
-      "url": "https://registry.npmjs.org",
-      "scopes": [
-        "extensions.unity"
-      ]
-    },
-	{
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
