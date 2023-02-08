@@ -2,7 +2,7 @@
   "name": "extensions.unity.iap.store",
   "displayName": "IAP Store",
   "author": { "name": "Ivan Murzak", "url": "https://github.com/IvanMurzak" },
-  "version": "4.5.2",
+  "version": "4.5.3",
   "unity": "2020.3",
   "description": "Unity IAP (4.5.2) wrapper for simple usage",
   "keywords": [

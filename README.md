@@ -17,7 +17,6 @@ Powerful Store manager for Unity project. You have codeless products management 
 - ✔️ pack of multiple currencies by single purchase
 - ✔️ drawer for showing items in Unity UI with ability to override for any other UI system
 - ✔️ drawer adapter for showing all items from specific category in Unity UI with ability to override for any other UI system
-- ✔️ drawer adapter for showing all items from specific category in Unity UI with ability to override for any other UI system
 
 
 # How to install - Option 1 (RECOMMENDED)
@@ -34,7 +33,7 @@ Powerful Store manager for Unity project. You have codeless products management 
 ```json
 {
   "dependencies": {
-    "extensions.unity.iap.store": "4.5.2",
+    "extensions.unity.iap.store": "4.5.3",
   },
   "scopedRegistries": [
     {
