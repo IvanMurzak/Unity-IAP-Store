@@ -2,12 +2,12 @@
   "name": "extensions.unity.iap.store",
   "displayName": "IAP Store",
   "author": { "name": "Ivan Murzak", "url": "https://github.com/IvanMurzak" },
-  "version": "4.4.1",
+  "version": "4.5.2",
   "unity": "2020.3",
-  "description": "Unity IAP (4.4.1) wrapper for simple usage",
+  "description": "Unity IAP (4.5.2) wrapper for simple usage",
   "dependencies": {
-    "com.unity.purchasing": "4.4.1",
-    "com.cysharp.unitask": "2.2.5",
+    "com.unity.purchasing": "4.5.2",
+    "com.cysharp.unitask": "2.3.3",
     "com.neuecc.unirx": "7.1.0"
   },
   "scopedRegistries": [
@@ -18,12 +18,12 @@
         "extensions.unity"
       ]
     },
-    {
-      "name": "NPM",
-      "url": "https://registry.npmjs.org",
+	{
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
       "scopes": [
-    	"com.cysharp",
-		"com.neuecc"
+        "com.cysharp.unitask",
+        "com.neuecc.unirx"
       ]
     }
   ]

@@ -1,18 +1,18 @@
 {
   "dependencies": {
     "com.cysharp.unitask": {
-      "version": "2.2.5",
+      "version": "2.3.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://registry.npmjs.org"
+      "url": "https://package.openupm.com"
     },
     "com.neuecc.unirx": {
       "version": "7.1.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://registry.npmjs.org"
+      "url": "https://package.openupm.com"
     },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
@@ -22,7 +22,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.16",
+      "version": "2.0.17",
       "depth": 0,
       "source": "registry",
       "dependencies": {
