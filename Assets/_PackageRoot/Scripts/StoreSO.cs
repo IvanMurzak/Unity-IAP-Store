@@ -12,42 +12,48 @@ namespace Project.Store
 {
 	public abstract class StoreSO : SerializedScriptableObject
 	{
-												public	static			StoreSO																Instance						{ get; private set; }
+												public	static			StoreSO																Instance							{ get; private set; }
 
-												private					Subject<UnityIAPInitializer>										onInitialized					= new Subject<UnityIAPInitializer>();
-												public					IObservable<UnityIAPInitializer>									OnInitialized					=> onInitialized;
+												private					Subject<UnityIAPInitializer>										onInitialized						= new Subject<UnityIAPInitializer>();
+												public					IObservable<UnityIAPInitializer>									OnInitialized						=> onInitialized;
 
-												private					Subject<StoreSellable>												onPurchaseSuccessful			= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>											OnPurchaseSuccessful			=> onPurchaseSuccessful;
+												private					Subject<StoreSellable>												onPurchaseSuccessful				= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>											OnPurchaseSuccessful				=> onPurchaseSuccessful;
 
-												private					Subject<StoreSellable>												onInsufficientFunds				= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>											OnInsufficientFunds				=> onInsufficientFunds;
+												private					Subject<StoreSellable>												onInsufficientFunds					= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>											OnInsufficientFunds					=> onInsufficientFunds;
 
-												private					Subject<StoreSellable>												onPurchaseFailed				= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>											OnPurchaseFailed				=> onPurchaseFailed;
+												private					Subject<StoreSellable>												onPurchaseFailed					= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>											OnPurchaseFailed					=> onPurchaseFailed;
 
-												private					Subject<(StoreSellable sellable, PurchaseFailureReason reason)>		onIAPPurchaseFailed				= new Subject<(StoreSellable sellable, PurchaseFailureReason reason)>();
-												public					IObservable<(StoreSellable sellable, PurchaseFailureReason reason)> OnIAPPurchaseFailed				=> onIAPPurchaseFailed;
+												private					Subject<(StoreSellable sellable, PurchaseFailureReason reason)>		onIAPPurchaseFailed					= new Subject<(StoreSellable sellable, PurchaseFailureReason reason)>();
+												public					IObservable<(StoreSellable sellable, PurchaseFailureReason reason)> OnIAPPurchaseFailed					=> onIAPPurchaseFailed;
 
-												private					Subject<bool>														onRestorePurchasesCompleted		= new Subject<bool>();
-												public					IObservable<bool>													OnRestorePurchasesCompleted		=> onRestorePurchasesCompleted;
+												private					Subject<bool>														onRestorePurchasesCompleted			= new Subject<bool>();
+												public					IObservable<bool>													OnRestorePurchasesCompleted			=> onRestorePurchasesCompleted;
 		
-												private					Subject<StoreSellable>												onProductPromotionalPurchased	= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>											OnProductPromotionalPurchased	=> onProductPromotionalPurchased;
+												private					Subject<Product>													onPromotionalPurchaseInterceptor	= new Subject<Product>();
+												public					IObservable<Product>												OnPromotionalPurchaseInterceptor	=> onPromotionalPurchaseInterceptor;
+												
+												private					Subject<Product>													onPromotionalPurchaseContinue		= new Subject<Product>();
+												public					IObservable<Product>												OnPromotionalPurchaseContinue		=> onPromotionalPurchaseContinue;
+
+												private					Subject<Product>													onPromotionalPurchaseCancel			= new Subject<Product>();
+												public					IObservable<Product>												OnPromotionalPurchaseCancel			=> onPromotionalPurchaseCancel;
 
 												// TODO: implement Blocked event
-												private					Subject<StoreSellable>												onPurchaseBlocked				= new Subject<StoreSellable>();
-												public					IObservable<StoreSellable>											OnPurchaseBlocked				=> onPurchaseBlocked;
+												private					Subject<StoreSellable>												onPurchaseBlocked					= new Subject<StoreSellable>();
+												public					IObservable<StoreSellable>											OnPurchaseBlocked					=> onPurchaseBlocked;
 
-		[OnValueChanged("OnEnable")]			public					bool																isActive						= true;
+		[OnValueChanged("OnEnable")]			public					bool																isActive							= true;
 												public					bool																debug;
 		[Required]								public					UnityIAPInitializer													unityIAPInitializer;
 		[OnValueChanged("InvalidateData")]
-		[Required, HideReferenceObjectPicker]	public					List<Currency>														currencies						= new List<Currency>();
+		[Required, HideReferenceObjectPicker]	public					List<Currency>														currencies							= new List<Currency>();
 		[OnValueChanged("InvalidateData")]
-		[Required, HideReferenceObjectPicker]	public					Dictionary<string, List<StoreSellable>>								categories						= new Dictionary<string, List<StoreSellable>>();
+		[Required, HideReferenceObjectPicker]	public					Dictionary<string, List<StoreSellable>>								categories							= new Dictionary<string, List<StoreSellable>>();
 	
-																		StoreSellable														_sellableApplePromotional;
+																		Product																_productApplePromotional 			= null;
 																		List<StoreSellable>													_sellablesList;
 																		Dictionary<string, StoreSellable>									_sellablesByIAPID;
 																		Dictionary<string, StoreSellable>									_sellablesByID;
@@ -104,7 +110,7 @@ namespace Project.Store
 												public					bool											ValidateCurrency		(string currency)   => currency == null ? false : AllCurrenciesNames().Contains(currency);
 												public					bool											ValidateCategory		(string category)	=> category == null ? false : categories.ContainsKey(category);
 
-												public					bool											IsSellableApplePromotional					=> _sellableApplePromotional != null;
+												public					bool											IsProductApplePromotional					=> _productApplePromotional != null;
 		public		virtual void	InvalidateData			()
 		{
 			if (debug) Debug.Log("StoreSO.InvalidateData");
@@ -156,7 +162,6 @@ namespace Project.Store
 			OnPurchaseBlocked			.Subscribe(OnPurchaseBlockedEvent)				.AddTo(compositeDiposable);
 
 			OnRestorePurchasesCompleted	.Subscribe(OnRestorePurchasesCompletedEvent)	.AddTo(compositeDiposable);
-			OnProductPromotionalPurchased.Subscribe(OnProductPromotionalPurchaseEvent)	.AddTo(compositeDiposable);
 
 			if (Application.isPlaying)
 			{
@@ -200,6 +205,7 @@ namespace Project.Store
 			unityIAPInitializer.OnProductPurchasingFailed
 				.Subscribe(transaction =>
 				{
+					_productApplePromotional = null;
 					var sellable = SellablesByIAPID[transaction.productId];
 					onPurchaseFailed.OnNext(sellable);
 					onIAPPurchaseFailed.OnNext((sellable, transaction.failureReason));
@@ -210,13 +216,13 @@ namespace Project.Store
 				.Subscribe(onRestorePurchasesCompleted.OnNext)
 				.AddTo(compositeDiposable);
 
-			unityIAPInitializer.OnProductPromotionalPurchased
+			unityIAPInitializer.OnPromotionalPurchaseInterceptor
 				.Subscribe(item =>
 				{
 					// Handle this event by, e.g. presenting a parental gates.
 					if (debug) Debug.Log($"StoreSO.OnProductPromotionalPurchased: {item.definition.id}", this);
-					_sellableApplePromotional = GetSellable(item.definition.id);
-					onProductPromotionalPurchased.OnNext(_sellableApplePromotional);
+					_productApplePromotional = item;
+					onPromotionalPurchaseInterceptor.OnNext(_productApplePromotional);
 				})
 				.AddTo(compositeDiposable);
 
@@ -257,15 +263,15 @@ namespace Project.Store
 			return product.metadata.localizedPriceString;
 		}
 
-		protected   virtual void	OnInsufficientFundsEvent		(StoreSellable sellable) { }
-		protected   virtual void	OnPurchaseSuccessfulEvent		(StoreSellable sellable) { }
-		protected   virtual void	OnPurchaseFailedEvent			(StoreSellable sellable) { }
-		protected   virtual void	OnIAPPurchaseFailedEvent		((StoreSellable sellable, PurchaseFailureReason reason) data) { }
-		protected   virtual void	OnRestorePurchasesCompletedEvent(bool success) { }
-		protected   virtual void	OnPurchaseBlockedEvent			(StoreSellable sellable) { }
-		protected	virtual void	OnProductPromotionalPurchaseEvent	(StoreSellable sellable) { }
+		protected   virtual void	OnInsufficientFundsEvent			(StoreSellable sellable) { }
+		protected   virtual void	OnPurchaseSuccessfulEvent			(StoreSellable sellable) { }
+		protected   virtual void	OnPurchaseFailedEvent				(StoreSellable sellable) { }
+		protected   virtual void	OnIAPPurchaseFailedEvent			((StoreSellable sellable, PurchaseFailureReason reason) data) { }
+		protected   virtual void	OnRestorePurchasesCompletedEvent	(bool success) { }
+		protected   virtual void	OnPurchaseBlockedEvent				(StoreSellable sellable) { }
+		protected	virtual void	OnProductPromotionalPurchaseEvent	(Product product) { }
 
-		protected	void			SpendBalance					(StoreSellable sellable)
+		protected	void			SpendBalance						(StoreSellable sellable)
 		{
 			foreach (var required in sellable.required)
 			{
@@ -273,7 +279,7 @@ namespace Project.Store
 				SpendBalance(required.Currency, required.Amount);
 			}
 		}
-		private		void			ApplyPurchaseInternal			(StoreSellable sellable)
+		private		void			ApplyPurchaseInternal				(StoreSellable sellable)
 		{
 			var sellables = new List<IStoreSellable>() { sellable };
 				sellables.AddRange(sellable.SubSellables);
@@ -284,8 +290,8 @@ namespace Project.Store
 
 			onPurchaseSuccessful.OnNext(sellable);
 		}
-		public		void			Purchase						(string id) => Purchase(GetSellable(id));
-		public		void			Purchase						(StoreSellable sellable)
+		public		void			Purchase							(string id) => Purchase(GetSellable(id));
+		public		void			Purchase							(StoreSellable sellable)
 		{
 			if (debug) Debug.Log($"Store.Purchase, sellable.ID = {sellable.ID}, isIAP={sellable.isIAP}", this);
 
@@ -313,17 +319,25 @@ namespace Project.Store
 			}
 		}
 
-		public		void			RestorePurchases				()
+		public		void			RestorePurchases					()
 		{
 			if (debug) Debug.Log($"Store.RestorePurchases", this);
 			unityIAPInitializer?.RestorePurchases();
 		}
 
-		public		void			ContinuePromotionalPurchases	()
+		public		void			ContinuePromotionalPurchases		()
 		{
 			if (debug) Debug.Log($"Store.ContinuePromotionalPurchases", this);
-			_sellableApplePromotional = null;
+			onPromotionalPurchaseContinue?.OnNext(_productApplePromotional);
+			_productApplePromotional = null;
 			unityIAPInitializer?.ContinuePromotionalPurchases();
+		}
+		
+		public		void			CancelPromotionalPurchases		()
+		{
+			if (debug) Debug.Log($"Store.CancelPromotionalPurchases", this);
+			onPromotionalPurchaseCancel?.OnNext(_productApplePromotional);
+			_productApplePromotional = null;
 		}
 	}
 }

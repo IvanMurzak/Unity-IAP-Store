@@ -26,8 +26,8 @@ namespace Project.Store
 								Subject<bool>													onRestorePurchasesCompleted		= new Subject<bool>();
 		public					IObservable<bool>												OnRestorePurchasesCompleted		=> onRestorePurchasesCompleted == null ? onRestorePurchasesCompleted = new Subject<bool>() : onRestorePurchasesCompleted;
 		
-								Subject<Product>												onProductPromotionalPurchased	= new Subject<Product>();
-		public					IObservable<Product>											OnProductPromotionalPurchased	=> onProductPromotionalPurchased == null ? onProductPromotionalPurchased = new Subject<Product>() : onProductPromotionalPurchased;
+								Subject<Product>												onPromotionalPurchaseInterceptor	= new Subject<Product>();
+		public					IObservable<Product>											OnPromotionalPurchaseInterceptor	=> onPromotionalPurchaseInterceptor == null ? onPromotionalPurchaseInterceptor = new Subject<Product>() : onPromotionalPurchaseInterceptor;
 
 		public					bool															useFakeStore;
 		[ShowIf("useFakeStore")]
@@ -235,7 +235,7 @@ namespace Project.Store
 		protected	virtual		void															OnPromotionalPurchase			(Product i)
 		{
 			Debug.Log($"OnPromotionalPurchase purchase id={i.definition.id}");
-			onProductPromotionalPurchased.OnNext(i);
+			onPromotionalPurchaseInterceptor.OnNext(i);
 		}
 
 		public		virtual		void															ContinuePromotionalPurchases	()
