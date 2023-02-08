@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "com.cysharp.unitask": "2.2.5",
+    "com.cysharp.unitask": "2.3.3",
     "com.neuecc.unirx": "7.1.0",
-    "com.unity.ide.visualstudio": "2.0.16",
+    "com.unity.ide.visualstudio": "2.0.17",
     "com.unity.ide.vscode": "1.2.5",
-    "com.unity.purchasing": "4.4.1",
+    "com.unity.purchasing": "4.5.2",
     "com.unity.test-framework": "1.1.33",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.ugui": "1.0.0",
@@ -57,18 +57,11 @@
       ]
     },
     {
-      "name": "NPM",
-      "url": "https://registry.npmjs.org",
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
       "scopes": [
         "com.cysharp",
         "com.neuecc"
-      ]
-    },
-    {
-      "name": "Packages from jillejr",
-      "url": "https://npm.cloudsmith.io/jillejr/newtonsoft-json-for-unity/",
-      "scopes": [
-        "jillejr"
       ]
     }
   ]
