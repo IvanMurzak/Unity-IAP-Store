@@ -354,15 +354,15 @@ namespace Project.Store
         /// <summary>
         /// Cancel current "iOS promotional" purchase. Does nothing at non iOS platform.
         /// </summary>
-        public void iOSPromotionalPurchaseContinueCancel()
+        public void iOSPromotionalPurchaseCancel()
 		{
 #if !UNITY_IOS
 			return;
 #endif
-			if (debug) Debug.Log($"Store.iOSPromotionalPurchaseContinueCancel", this);
+			if (debug) Debug.Log($"Store.iOSPromotionalPurchaseCancel", this);
 			if (_applePromotionalProduct == null)
             {
-                if (debug) Debug.LogError($"Store.iOSPromotionalPurchaseContinueCancel canceled, because `_applePromotionalProduct` is null", this);
+                if (debug) Debug.LogError($"Store.iOSPromotionalPurchaseCancel canceled, because `_applePromotionalProduct` is null", this);
                 return;
 			}
 
