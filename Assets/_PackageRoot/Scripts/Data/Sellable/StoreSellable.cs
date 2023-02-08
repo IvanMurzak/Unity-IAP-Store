@@ -31,8 +31,8 @@ namespace Project.Store
 
 		[BoxGroup("IAP/_"), LabelText("Product Type"),		OdinSerialize]												public			ProductType						IAP_ProductType						{ get; protected set; }
 		[BoxGroup("IAP/_"), LabelText("Payout Definition"), OdinSerialize, HideReferenceObjectPicker, Required]			public			PayoutDefinition				IAP_PayoutDefinition				{ get; protected set; }
-
-
+		[BoxGroup("IAP/_"), LabelText("AppleStore Promotion Visibility"), OdinSerialize, LabelWidth(250)]				public			AppleStorePromotionVisibility	applePromotionVisibility			{ get; protected set; }
+		
 		[BoxGroup("IAP/_"), LabelText("Override IDs"), SerializeField]													protected		bool							IAP_OverrideIDs;
 
 		[ShowIfGroup("IAP/_/Override", MemberName = "IAP_OverrideIDs")]

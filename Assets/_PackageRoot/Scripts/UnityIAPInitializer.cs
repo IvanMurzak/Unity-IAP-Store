@@ -25,7 +25,10 @@ namespace Project.Store
 
 								Subject<bool>													onRestorePurchasesCompleted		= new Subject<bool>();
 		public					IObservable<bool>												OnRestorePurchasesCompleted		=> onRestorePurchasesCompleted == null ? onRestorePurchasesCompleted = new Subject<bool>() : onRestorePurchasesCompleted;
-	
+		
+								Subject<Product>												onPromotionalPurchaseInterceptor	= new Subject<Product>();
+		public					IObservable<Product>											OnPromotionalPurchaseInterceptor	=> onPromotionalPurchaseInterceptor == null ? onPromotionalPurchaseInterceptor = new Subject<Product>() : onPromotionalPurchaseInterceptor;
+
 		public					bool															useFakeStore;
 		[ShowIf("useFakeStore")]
 		public					FakeStoreUIMode													fakeStoreUIMode;
@@ -111,7 +114,7 @@ namespace Project.Store
 			// extensionsUDP does not exist in UDP API
 			// extensionsAmazon not supported by Amazon
 		}
-		protected	virtual		void															InvalidateRestoredProducts(Dictionary<string, Product> nonConsumableProducts)
+		protected	virtual		void															InvalidateRestoredProducts		(Dictionary<string, Product> nonConsumableProducts)
         {
 			var newNonConsumableProducts = controller.products.all
 				.Where(product => product.definition.type == ProductType.NonConsumable)
@@ -151,7 +154,7 @@ namespace Project.Store
 			if (isInited && controller != null) return;
 			var productDefinitions = iapSellables.Select(x =>
 			{
-				var definition = new ProductDefinition(x.ID, x.IAP_StoreSpecitifID, x.IAP_ProductType, true, x.IAP_PayoutDefinition);
+				var definition = new StoreProductDefinition(x.ID, x.IAP_StoreSpecitifID, x.IAP_ProductType, true, x.IAP_PayoutDefinition, x.applePromotionVisibility);
 				return definition;
 			});
 			foreach (var definition in productDefinitions)
@@ -159,6 +162,11 @@ namespace Project.Store
 
 			var builder = ConfigurationBuilder.Instance(CreatePurchasingModule());
 				builder.AddProducts(productDefinitions);
+
+			// On iOS and tvOS we can intercept promotional purchases that come directly from the App Store.
+			// On other platforms this will have no effect; OnPromotionalPurchase will never be called.
+			builder.Configure<IAppleConfiguration>().SetApplePromotionalPurchaseInterceptorCallback(OnPromotionalPurchase);
+
 			UnityPurchasing.Initialize(this, builder);
 			isInited = true;
 		}
@@ -179,6 +187,12 @@ namespace Project.Store
 				await UniTask.DelayFrame(1);
 				onProductPurchased.OnNext(new TransactionContainer() { productId = product.definition.id, transactionId = product.transactionID });
 			});
+
+			// Set all these products to be visible in the user's App Store
+			foreach (var item in controller.products.all)
+			{
+				if (item.availableToPurchase) extensionsApple?.SetStorePromotionVisibility(item, ((StoreProductDefinition)item.definition).applePromotionVisibility);				
+			}
 
 			Debug.Log("StoreSO: Unity IAP Initialized");
 			onInitializedIAP.OnNext(this);
@@ -216,6 +230,18 @@ namespace Project.Store
 				transactionId	= i.transactionID,
 				failureReason	= failureReason
 			});
+		}
+
+		protected	virtual		void															OnPromotionalPurchase			(Product i)
+		{
+			Debug.Log($"OnPromotionalPurchase purchase id={i.definition.id}");
+			onPromotionalPurchaseInterceptor.OnNext(i);
+		}
+
+		public		virtual		void															ContinuePromotionalPurchases	()
+		{
+			Debug.Log($"ContinuePromotionalPurchases");
+			extensionsApple?.ContinuePromotionalPurchases();
 		}
 	}
 }
