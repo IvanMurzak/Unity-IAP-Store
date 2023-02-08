@@ -1,5 +1,5 @@
 # Unity IAP Store
-![npm](https://img.shields.io/npm/v/extensions.unity.iap.store) ![License](https://img.shields.io/github/license/IvanMurzak/Unity-IAP-Store) [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
+![npm](https://img.shields.io/npm/v/extensions.unity.iap.store) [![openupm](https://img.shields.io/npm/v/extensions.unity.iap.store?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/extensions.unity.iap.store/) ![License](https://img.shields.io/github/license/IvanMurzak/Unity-IAP-Store) [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
 ![image](https://user-images.githubusercontent.com/9135028/182879404-d7cbc547-5f3d-4b08-9185-fcaf10b0080c.png)
 
