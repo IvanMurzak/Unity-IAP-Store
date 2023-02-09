@@ -40,6 +40,7 @@ Powerful Store manager for Unity project. You have codeless products management 
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
+        "extensions.unity",
         "com.cysharp.unitask",
         "com.neuecc.unirx"
       ]
