@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Project.Store
@@ -7,7 +7,7 @@ namespace Project.Store
     {
         [Button(ButtonSizes.Medium)]
         public void Restore()
-		{
+        {
             if (StoreSO.Instance == null)
             {
                 Debug.LogError("StoreSO.Instance is not yet initialized");
@@ -16,6 +16,6 @@ namespace Project.Store
             {
                 StoreSO.Instance.RestorePurchases();
             }
-		}
+        }
     }
 }

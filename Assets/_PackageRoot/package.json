@@ -2,17 +2,17 @@
   "name": "extensions.unity.iap.store",
   "displayName": "IAP Store",
   "author": { "name": "Ivan Murzak", "url": "https://github.com/IvanMurzak" },
-  "version": "4.5.3",
+  "version": "4.12.2",
   "unity": "2020.3",
-  "description": "Unity IAP (4.5.2) wrapper for simple usage",
+  "description": "Unity IAP (4.12.2) wrapper for simple usage",
   "keywords": [
     "purchasing",
     "iap",
     "unity"
   ],
   "dependencies": {
-    "com.unity.purchasing": "4.5.2",
-    "com.cysharp.unitask": "2.3.3",
+    "com.unity.purchasing": "4.12.2",
+    "com.cysharp.unitask": "2.5.10",
     "com.neuecc.unirx": "7.1.0"
   },
   "scopedRegistries": [

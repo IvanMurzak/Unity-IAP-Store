@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using Sirenix.OdinInspector.Editor;
 using System.Numerics;
 using UnityEditor;
@@ -19,14 +19,14 @@ namespace Sirenix.Serialization
                 rect = EditorGUI.PrefixLabel(rect, label);
             }
 
-			try
-			{
-				value = BigInteger.Parse(EditorGUI.TextField(rect, value.ToString()));
-			}
-			finally
-			{
-				this.ValueEntry.SmartValue = value;
-			}
+            try
+            {
+                value = BigInteger.Parse(EditorGUI.TextField(rect, value.ToString()));
+            }
+            finally
+            {
+                this.ValueEntry.SmartValue = value;
+            }
         }
     }
 }

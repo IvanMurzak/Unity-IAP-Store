@@ -155,7 +155,7 @@ namespace Project.Store
                         {
                             var index = i;
                             if (!StoreSO.Instance.IsEnoughBalance(sellable.required[index]))
-						    {
+                            {
                                 DOTween.Kill(uiPrices[index].textPrice.GetInstanceID());
                                 DOTween.Kill(uiPrices[index].textPrice.transform.GetInstanceID());
 

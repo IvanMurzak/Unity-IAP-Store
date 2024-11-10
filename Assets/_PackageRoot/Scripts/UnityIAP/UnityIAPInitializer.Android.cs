@@ -2,7 +2,7 @@
 
 namespace Project.Store
 {
-	public partial class UnityIAPInitializer
+    public partial class UnityIAPInitializer
     {
         protected virtual ConfigurationBuilder ConfigureBuilderAndroid(ConfigurationBuilder builder)
         {
@@ -10,5 +10,5 @@ namespace Project.Store
 
             return builder;
         }
-	}
+    }
 }

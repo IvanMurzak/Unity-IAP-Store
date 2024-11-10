@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project.Store
 {
-	public class StoreSubSellableDrawer
-	{
+    public class StoreSubSellableDrawer
+    {
 
-	}
+    }
 }
