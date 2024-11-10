@@ -24,7 +24,7 @@ Powerful Store manager for Unity project. You have codeless products management 
 - Install [ODIN Inspector](https://odininspector.com/)
 - Install [OpenUPM-CLI](https://github.com/openupm/openupm-cli#installation)
 - Open command line in Unity project folder
-- `openupm --registry add extensions.unity.iap.store`
+- `openupm add extensions.unity.iap.store`
 
 # How to install - Option 2
 
@@ -40,6 +40,7 @@ Powerful Store manager for Unity project. You have codeless products management 
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
+        "extensions.unity",
         "com.cysharp.unitask",
         "com.neuecc.unirx"
       ]

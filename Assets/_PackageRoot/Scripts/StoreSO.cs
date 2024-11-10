@@ -363,6 +363,7 @@ namespace Project.Store
             if (_applePromotionalProduct == null)
             {
                 if (debug) Debug.LogError($"Store.iOSPromotionalPurchaseCancel canceled, because `_applePromotionalProduct` is null", this);
+                if (debug) Debug.LogError($"Store.iOSPromotionalPurchaseCancel canceled, because `_applePromotionalProduct` is null", this);
                 return;
             }
 
