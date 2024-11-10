@@ -5,7 +5,7 @@ using UnityEngine.Purchasing;
 
 namespace Project.Store
 {
-	public partial class UnityIAPInitializer
+    public partial class UnityIAPInitializer
     {
         #region Events
         Subject<Product> onPromotionalPurchaseInterceptor = new Subject<Product>();
@@ -23,15 +23,15 @@ namespace Project.Store
         }
 
         protected virtual void OnPromotionalPurchase(Product i)
-		{
+        {
             if (debug) Debug.Log($"UnityIAPInitializer.OnPromotionalPurchase purchase id={i.definition.id}");
-			onPromotionalPurchaseInterceptor.OnNext(i);
-		}
+            onPromotionalPurchaseInterceptor.OnNext(i);
+        }
 
-		public virtual void ContinuePromotionalPurchases()
-		{
+        public virtual void ContinuePromotionalPurchases()
+        {
             if (debug) Debug.Log($"UnityIAPInitializer.ContinuePromotionalPurchases");
-			extensionsApple?.ContinuePromotionalPurchases();
-		}
-	}
+            extensionsApple?.ContinuePromotionalPurchases();
+        }
+    }
 }

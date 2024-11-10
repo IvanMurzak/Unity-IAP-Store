@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Project.Store
@@ -13,7 +13,7 @@ namespace Project.Store
         [SerializeField, Required] string productID;
 
         public void Purchase()
-		{
+        {
             if (StoreSO.Instance == null)
             {
                 Debug.LogError("StoreSO.Instance is not yet initialized");
@@ -22,6 +22,6 @@ namespace Project.Store
             {
                 StoreSO.Instance.Purchase(productID);
             }
-		}
+        }
     }
 }
